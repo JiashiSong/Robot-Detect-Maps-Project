@@ -1,0 +1,134 @@
+  %%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{ Third }
+  \newcommand{\meetinglocation}{ Atrium, Ingkarni Wardli } %% Location
+  \newcommand{\meetingdatetime}{ 2.00pm on Monday 14th August 2017 } %% Date and time
+  \newcommand{\meetingchair}{ Alex } %% Chair
+  \newcommand{\meetingminutes}{ Andrew } %% Minutes
+
+  \begin{document}
+
+  \noindent The {\em \meetingno} Software Engineering Group Project weekly meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+  \begin{flushleft}
+  
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+  \vspace*{10pt}
+
+  \section{Apologies}
+	N/A
+
+  \section{Presentation}
+	N/A
+  
+  \section{Requirements Assessment and Feasibility}
+  
+  	
+  	\begin{enumerate}
+    \item Robot Mapping and Navigation Requirements
+    	\begin{itemize}
+    	\item Surveillance Map
+		\item Minimum Distance
+        \item Significant Features and Detection
+        \item Mapping Resolution
+        \item Automated Navigation
+        \item Controlled Navigation
+        \item Obstacles and Collisions
+        \item Boundaries
+        \item No-Go Zones
+		\end{itemize}
+     \item Physical Demonstration Map Requirements
+    	\begin{itemize}
+    	\item Craters
+        \item Trails and Tracks
+        \item Apollo 17 Landing Artifacts
+        \item Obstacles
+		\end{itemize}
+     \item User Interface Requirements
+    	\begin{itemize}
+        \item Ability to Start/Stop Surveying
+        \item Ability to Control Robot Manually
+        \item Ability to Override Mapping Boundaries
+        \item Ability to Dynamically Allocate No-Go Zones
+        \item Periodic View of Rover Location
+		\end{itemize}      
+	\end{enumerate}
+       
+    To be discussed for each of the requirements listed above:
+	\begin{enumerate}
+    \item Is the requirement clear?
+    \item How will the requirement be achieved?
+    \item Is the requirement feasible, if not, can it be scaled to make it feasible?
+    \item How should the requirement be prioritised?
+    \item What are the requirement's dependencies and how will it fit into our time-frame?
+	\end{enumerate}
+    
+  \section{Lunar Rover Design}
+	
+    The following sensors are confirmed to be available in the Lego Mindstrorm Kit:
+	\begin{itemize}
+    \item Colour Light Sensor
+	\item Ultrasonic Sensor
+	\item Gyro Sensor Sensor
+	\item $2 \times $Touch Sensors
+	\end{itemize}
+  
+  	To discuss:
+	\begin{enumerate}
+    \item How are we planning to design the Lunar Rover? Specifically in relation to the use of the sensors listed above? ({\bf High Priority})
+	\item How we can link each sensor to requirements outlined in the Software Requirements Specification for presentation in the client meeting? ({\bf High Priority})
+	\item Possible designs for the Lunar Rover? ({\bf Low - Medium Priority})
+	\end{enumerate}
+  
+  \section{Map Design}
+  	In last weeks client meeting it became known to us that we are going to be building the demonstration map ourselves. Obviously we would like to keep the map as simple as possible while still showing the features outlined in the client meeting.  Therefore we will need to discuss the following issues:
+	\begin{enumerate}
+    \item What resources are available to us to build the map? ({\bf Medium - High Priority})
+    \item How will the map be scaled in regards to the size of our Lunar Rover? Remember that we need to have a boundary diameter of 500 meters, our map is going to be A1 sized and we may or may not need to have a survey area outside of this boundary. Will this be possible? How will our rover be scaled to suit? ({\bf Medium - High Priority})
+     \item How are we planning to design and build the map and what is feasible within our time-frame and budget? ({\bf Medium})
+    \item What is our suggested time-line for the production of the map? ({\bf Medium  Priority})
+	\end{enumerate}
+  
+  \section{Other Issues}
+  \subsection{Naming of the Lunar Rover}
+  Since it was informally discussed during the week how we could name our Lunar Rover, now would be a good time now to formally introduce the name for our new yet to be assembled Lunar Rover, Ava 2.0 and confirm that everyone is happy with the chosen name. 
+  \subsection{Weekly Goals}
+  %TODO
+  \begin{itemize}
+  \item Everyone
+  \linebreak Task: Arrange a time to meet during the week in order to get more familiar with the Lego Mindstorm Kit and what it can do, and maybe start coming up with some solid ideas for how we are going to design and assemble our Lunar Rover. ({\bf High  Priority})
+  \linebreak Task: Continue working on completing SRS asap. ({\bf High  Priority})
+  \end{itemize}
+%%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next meeting to be held on 21 August 2017.
+  \noindent\linebreak Note: Meeting start-time 11.05am. End time 12.10pm.
+  \end{flushleft}
+
+  \end{document}

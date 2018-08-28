@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\begin{center}    
+{\huge Github Workflow Tutorial \par}
+\vspace{0.5cm}
+{\large For Group UG02 \par}
+\vspace{0.5cm}
+{\large Wednesday 9th August 2017 \par}
+\vspace{0.5cm}
+\end{center}
+
+\begin{flushleft}
+\begin{tabular}{ll}
+{\bfseries Group Members} & Brock Campbell \\
+ & Andrew Graham \\
+ & Nathan Crowe \\
+ & Alexander Good \\
+ & Mitchell Mickan \\
+ & Saxon Nelson-Milton \\
+ & Jiashi (Josh) Song \\
+\end{tabular}
+\end{flushleft}
+
+\section{Overall Summary}
+This group will be utilizing a feature based Git workflow during this project. The core idea behind the Feature Branch Workflow is that all feature development should take place in a dedicated branch instead of the master branch. This encapsulation makes it easy for multiple developers to work on a particular feature without disturbing the main codebase. It also means the master branch will never contain broken code, which is a huge advantage for continuous integration environments.
+
+\section{Typical Workflow}
+Say that Bob wants to implement a new feature that involves updating the UI. The following example workflow roughly documents the steps Bob should take.
+	\subsection{} Begin by pulling the latest changes from master: \textbf{git pull origin master}
+    \subsection{} Take the To-do item from the scrum board, place it in the ongoing column and convert it to an issue.
+    \subsection{} Create a new branch with a meaningful name: \textbf{git checkout -b Bob-Updated-Ui}
+    \subsection{} To ensure that Bob is working on his own branch check the results of: \textbf{git status}
+    \subsection{} Edit the branch code, and stage and commit results as many times as needed using \textbf{git add <some-file>; git commit -m "meaningful commit message"}
+    \subsection{} Push the changes to the central repository using: \textbf{git push -u origin Bob-Updated-Ui}. \newline This allows Bob to push to his branch in the future using \textbf{git push}
+    \subsection{} After the feature has been implemented and the latest commits added to the central repository, Bob should start a pull request from the Github UI and assign it to the QA manager. The QA manager will then assess Bob's code for functionality and style and then consult with Bob about required updates. Bob then implements these changes.
+    \subsection{} When the QA manager approves the pull request, it will be merged to the central master branch using the foloowing commands: \textbf{git checkout master; git merge Bob-Updated-Ui; git push origin master}. Alternatively, these commands can be handled in the Github UI.
+    \subsection{} The feature branch can now be deleted: \textbf{git push origin --delete Bob-Updated-Ui}    
+    \subsection{} The issue can be marked as closed, and the card from the ongoing column of the scrum board can be moved to the completed section.
+\end{document}

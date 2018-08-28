@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\begin{center}    
+{\huge Minutes of the First Client Meeting \par}
+\vspace{0.5cm}
+{\large Group UG02 \par}
+\vspace{0.5cm}
+{\large Tuesday 8th August 2017 \par}
+\vspace{0.5cm}
+\end{center}
+
+\begin{flushleft}
+\begin{tabular}{ll}
+{\bfseries Chair} & Brock Campbell \\
+{\bfseries Minutes} & Andrew Graham \\
+{\bfseries Members} & Nathan Crowe \\
+ & Alexander Good \\
+ & Mitchell Mickan \\
+ & Saxon Nelson-Milton \\
+ & Jiashi (Josh) Song \\
+{\bfseries Apologies} & None\\
+\end{tabular}
+\end{flushleft}
+
+\section{Time and Place}
+The {\itshape first} client meeting in {\itshape week 3} for the Software Engineering Group Project Group was held in the {\bfseries Ingkarnli Wardli 462}, at {\bfseries 11:10am on Tuesday 8th August 2017.} 
+
+\section{Quorum Announcement}
+	After a brief introduction by the group members and clients, the project manager announced that all members were present and the meeting could commence.
+    
+\section{Summary of Previous Meeting}
+ 	Not Applicable - This is the first client meeting of the semester.
+\section{Requirements Elicitation}
+	Requirements elicitation was grouped into 5 distinct categories - rover, mapping, mission, design and uncategorized requirements. 
+    
+    \subsection{Lunar Rover Requirements}
+    	\textbf{Q:} What sensors will be available, and how will video transmission and GPS location be handled? \newline
+        \textbf{A:} The kit is a Lego Mindstorm core set, and should contain 2 large motors, 1 small motor, a color sensor, gyroscope and 2 bump sensors. On the final project, a video camera will be added but this does not need to be handled on the prototype. A low orbit satellite is expected to pass over the survey area approximately every 30 seconds, which will provide a low resolution image which can be used to locate the rover.\newline
+        \textbf{Q:} In reference to the 500m mentioned in the problem specification, is this to be the distance travelled by the rover or does it describe the actual size of the prototype environment. \newline
+        \textbf{A:} In order to gain further funding for this project, the lunar rover must travel a minimum of 500m during its mission. 
+        
+    \subsection{Mapping requirements}
+    	\textbf{Q:} What is the size of the bounding box and how will the edge of the box be delineated in comparision to other objects within the bounding box. \newline
+        \textbf{A:} The bounding box will have a perimeter of roughly 500m and will be delineated with a thick black line, as will craters within the box. There will also be 3 different types of trails within the area, including footprints, vehicle trails and also a landing trail formed by the sliding Apollo 17 spaceship. \newline
+        \textbf{Q:} How are radiation signatures to be identified and what do they indicate? \newline
+        \textbf{A:} The Apollo 17 spaceship is assumed to have landed in a single piece and will emit a radiation signature. The presence of a radiation signature will indicate the location of the spaceship. \newline
+        \textbf{Q:} What significant features are to be displayed on the map and how should they be represented? \newline
+        \textbf{A:} The map must show physical features of the map including any found trails, which should be individually identified. THe edge of the bounding box and the location of the Apollo 17 must also be marked. \newline
+        \textbf{Q:} How are no-go zones (NGZ) to be marked ie are they to be marked in the UI or physically marked on the map?\newline
+        \textbf{A:} NGZ's must be able to be designated by the user within the UI. This will allow the user to delineate areas where potential threats to the rover exist, based on known threats or the satellite imaging. \newline
+        
+    \subsection{Mission Requirements}
+    	\textbf{Q:} How are we to handle the trade-off between accuracy and time when surveying the area? \newline
+        \textbf{A:} The final demonstration has a time limit of 30 minutes, 15-20 of which will be dedicated to a physical demonstration of the robot's capabilities. The maximum accuracy and resolution possible should be achieved within this time frame.\newline
+    	\textbf{Q:} When the robot has located the Apollo 17, should it return to its original landing position? Should this be handled manually or autonomously?\newline
+        \textbf{A:} The robot should complete a 500m path and return to the original landing spot. This should be handled autonomously if possible, with fallback manual controls if required.  \newline
+        
+    \subsection{Design Requirements}
+    	\textbf{Q:} What are the interface requirements for controlling the lunar rover? Are there any desirable features?\newline
+        \textbf{A:} The interface should be as simple as possible, with a real-time survey map taking centre stage, and other features like a start and stop surveying button, manual controls and no-go designation also being handled.  \newline 
+        
+    \subsection{Uncategorized Requirements}
+    	\textbf{Q:} What are the safety issues that need to be addressed in this project? \newline
+        \textbf{A:} The vehicle is an expensive piece of equipment, and therefore needs to be protected as much as possible. \newline
+    	\textbf{Q:} It is stated that collisions with an object with significant force must be avoided. Could you clarify the term "significant force"? \newline
+        \textbf{A:} Significant force occurs when the rover is pushing against an object with it's wheels spinning and not moving. \newline
+\section{Adjournment}
+	The next group meeting and will be held in the {\bf Atrium, Ingkarni Wardli} at {\bf 11:00am on Monday 14th August 2017}.\newline
+    The next client meeting and will be held in {\bf Room 462, Ingkarni Wardli} at {\bf 10:10am on Tuesday 8th August 2017}.\newline
+The meeting closed at 10:35pm.
+\end{document}

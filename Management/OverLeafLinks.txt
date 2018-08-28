@@ -1,0 +1,94 @@
+%
+% The purpose of this file is to hold links to OverLeaf documents so everyone can find them easily.
+% While this isn't best practice, it will help with working on documentation.
+% These links should be checked and updated as necessary to link to the week's documents.
+%
+
+System UML Diagram:
+https://www.gliffy.com/go/share/seiv5sq3437sncxpdal4
+
+Main Documentation: % These document links should be permanent. Note that these are all in one project on Overleaf.
+Software Process Management Plan:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/39216096/
+
+Software Design Document:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/39214203/
+
+Software Requirements Specification:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/39216097/
+
+User Manual:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/44874864/
+
+Software Design Document Changes Log:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/45000614/
+
+Software Requirements Specification Changes Log:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/44901306/
+
+Software Process Management Plan Changes Log:
+https://www.overleaf.com/10487192jrgnkxvdtcyd#/44901325/
+
+Meetings And Agendas:
+
+Client Meetings:
+  Agendas (Project Page): https://www.overleaf.com/10502443jnjvfjyrcdqg
+  Minutes (Project Page): https://www.overleaf.com/10570693qhfsbnhzsmbs
+
+  0. Templates:
+  Agenda: https://www.overleaf.com/10502443jnjvfjyrcdqg#/39447576/
+
+  1. First Client Meeting (08/08/2017):
+  Agenda: https://www.overleaf.com/10502443jnjvfjyrcdqg#/39509618/
+  Minutes: https://www.overleaf.com/10570693qhfsbnhzsmbs#/39509774/
+
+  2. Second Client Meeting (15/08/2017):
+  Agenda: https://www.overleaf.com/10502443jnjvfjyrcdqg#/39733306/
+  Minutes: https://www.overleaf.com/10570693qhfsbnhzsmbs#/40163051/
+
+  3. Third Client Meeting (22/08/2017):
+  Agenda: https://www.overleaf.com/10502443jnjvfjyrcdqg#/40170209/
+  Minutes: https://www.overleaf.com/10570693qhfsbnhzsmbs#/40218739/
+  
+  4. Fourth Client Meeting (29/08/2017):
+  Agenda: https://www.overleaf.com/10803219ftsvccgbfnpc#/40586167/
+  Minutes: https://www.overleaf.com/10570693qhfsbnhzsmbs#/40678244/
+  
+  5. Fifth Client Meeting (05/09/2017):
+  Agenda: https://www.overleaf.com/10502443jnjvfjyrcdqg#/40967793/
+  Minutes: https://www.overleaf.com/10570693qhfsbnhzsmbs#/40678244/
+
+
+  7. Seventh CLient Meeting (10/10/2017):
+  Agenda: 
+  Minutes: https://www.overleaf.com/10570693qhfsbnhzsmbs#/43447079/
+  
+Group Meetings:
+  Agendas (Project Page): https://www.overleaf.com/10570753kyqtdgdhwhgz
+  Minutes (Project Page): https://www.overleaf.com/10559530fqvqsvrppzhm
+
+  0. Templates:
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/39509418/
+  
+  1. First Group Meeting (07/08/2017):
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/39509642/
+  Minutes: https://www.overleaf.com/10559530fqvqsvrppzhm#/39509589/
+
+  2. Second Group Meeting (08/08/2017):
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/39509635/
+  Minutes: https://www.overleaf.com/10559530fqvqsvrppzhm#/39509594/
+
+  3. Third Group Meeting (14/08/2017):
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/40137908/
+  Minutes: https://www.overleaf.com/10559530fqvqsvrppzhm#/39509594/
+
+  4. Fourth Group Meeting (21/08/2017):
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/40137909/
+  Minutes: https://www.overleaf.com/10559530fqvqsvrppzhm#/40176761/
+
+  5. Fifth Group Meeting (28/08/2017):
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/40536461/
+  Minutes: https://www.overleaf.com/10559530fqvqsvrppzhm#/40677060/
+  
+  6. Sixth Group Meeting (04/09/2017):
+  Agenda: https://www.overleaf.com/10570753kyqtdgdhwhgz#/40950091/

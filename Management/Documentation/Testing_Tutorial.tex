@@ -1,0 +1,129 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+
+\begin{document}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=4
+	}
+
+\begin{center}    
+{\huge Testing Tutorial \par}
+\vspace{0.5cm}
+{\large By Nathan Crowe for Group UG02 \par}
+\vspace{0.5cm}
+{\large August 27, 2017 \par}
+\vspace{0.5cm}
+\end{center}
+
+\section{Purpose}
+	This is a tutorial to create testing scripts for the Lunar Rover, with the aid of JUnit and Maven.
+\section{Intended Audience}
+	UG02, and staff related to the Software Engineering \& Project course at University of Adelaide.
+\section{Scope}
+	This document contains basic methods to create testing scripts which thoroughly test the Lunar Rover, with the aid of JUnit and Maven.
+\section{Adding a New Test File}
+	Add 'newTestFile.java' (or any other name *.java) to \textbackslash src\textbackslash test\textbackslash java of the related project (such as Rover, or UI). \\
+	Also ensure the following dependency is present in pom.xml:
+	\lstset{language=XML}
+	\begin{lstlisting}
+<dependencies>
+  <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+  </dependency>
+</dependencies>
+	\end{lstlisting}
+	
+\section{Basic Test}
+
+	\lstset{language=Java}
+	\begin{lstlisting}
+import org.junit.Test;
+import static org.junit.Assert.assertTrue; // see http://junit.org/junit4/javadoc/latest/
+
+public class newTestFile {
+	
+	// degenerate true boolean test
+	// tests that true is true...
+	@Test
+	public void testTrue() {
+		assertTrue( true );
+	}
+}
+	\end{lstlisting}
+	The above very basic test tests that true is true.
+	\begin{lstlisting}
+import org.junit.Test;
+	\end{lstlisting}
+	The above line will be present for all JUnit test scripts. It is related to '@Test'.\\
+	'@Test' indicates the upcoming method acts as a test.\\
+	'@BeforeClass' indicates the upcoming method should run once before all tests.\\
+	'@Before' indicates the upcoming method should run before each test.\\
+	'@After' indicates the upcoming method should run after each test.\\
+	'@AfterClass' indicates the upcoming method should run once after all tests.\\
+	'@Ignore' indicates the upcoming method should be ignored (but compile nonetheless).\\
+	'@BeforeClass' requires the import:
+	\begin{lstlisting}
+import org.junit.BeforeClass;
+	\end{lstlisting}
+	The other four tools require the import you would imagine.
+	
+	\begin{lstlisting}
+import static org.junit.Assert.assertTrue;
+	\end{lstlisting}
+The above line is related to the assertTrue(Boolean value) function. Other assert functions exist, such as pertaining to equality between two parameters. They can be browsed from \url{http://junit.org/junit4/javadoc/latest/}.
+
+\section{Exception Test}
+	\begin{lstlisting}
+import org.junit.Test;
+
+public class newTestFile {
+	// tests the existence of the Rover class
+	@Test(expected = Rover.class)
+	public void testRover(){
+		assertTrue( true );
+	}
+}
+	\end{lstlisting}
+
+\section{Time Test}
+	\begin{lstlisting}
+import org.junit.Test;
+
+@Test(timeout=3000) // 3 seconds to pass test
+public void testMovement() {
+	// wait until rover has moved 5mm
+	// assumes that the rover is facing a wall
+	Float initialPos = rover.getUsensor().getDistance();
+	while( Math.abs(initialPos - rover.getUsensor().getDistance()) < 5){}
+}
+	\end{lstlisting}
+	
+\section{Notes}
+	The design of the rover software may need to be expanded (hopefully orthogonally) to accommodate testing in software, as the current design has a lack of accessor methods.\\
+	Testing in hardware may require writing a 'test runner' (normally required in general for JUnit, but Maven makes this unnecessary) to replace or expand upon the 'logic' class in a special hardware testing mode.
+
+\end{document}

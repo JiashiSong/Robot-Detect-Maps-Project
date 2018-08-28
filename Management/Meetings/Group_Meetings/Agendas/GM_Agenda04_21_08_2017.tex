@@ -1,0 +1,105 @@
+  %%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{ Fourth }
+  \newcommand{\meetinglocation}{ Atrium, Ingkarni Wardli } %% Location
+  \newcommand{\meetingdatetime}{ 2.00pm on Monday 21st August 2017 } %% Date and time
+  \newcommand{\meetingchair}{ Andrew Graham } %% Chair
+  \newcommand{\meetingminutes}{ Brock Campbell } %% Minutes
+
+  \begin{document}
+
+  \noindent The {\em \meetingno} Software Engineering Group Project weekly meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+  \begin{flushleft}
+  
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+  \vspace*{10pt}
+
+  \section{Apologies}
+	Nathan Crowe
+
+  \section{Presentation}
+	The floor will be opened to anyone who wishes to present findings or suggest items for discussion during the meeting.
+  
+  \section{Lunar Rover Design }
+  	Given the initial design for the lunar rover, how could this be improved.
+    To discuss:
+	\begin{enumerate}
+    \item Wheel positioning. Are we happy with the wheel positioning?
+   	Are they stable, and placed at the greatest width possible?
+    \item Sensor positioning. Are we happy with the current sensor set-up. 
+    Ultrasonic - Maybe it should be positioned lower to account for small bumps.
+    Gyroscope - Is it completely parallell to the ground when the rover is on a flat surface?
+    \end{enumerate}
+
+  
+  \section{Map Design}
+  	In last weeks client meeting it became known to us that we are going to be building the demonstration map ourselves. Obviously we would like to keep the map as simple as possible while still showing the features outlined in the client meeting.  Therefore we will need to discuss the following issues:
+	\begin{enumerate}
+    \item What protocols will we use to make the map. The size and shape of all trails need to be determined, as well as the colours to be used to delineate different objects.
+    \item How will we represent physical obstacles on the map?
+    \item Where will we physically store the map?
+	\end{enumerate}
+    
+  \section{Software Design}
+  Since this is week 5, it is time to consider what the overall design of our system will look like and where we shall start the implementation. Some work has already been started on the system design and this will be formalized during this meeting and made available. It is recommended that we start designing our movement controller for the rover this week, so that a working prototype is available for a demo in the next client meeting.
+   \begin{itemize}
+  \item Week 5 sprint
+  \linebreak Task 1: Create scrum board with issues to be implemented this week
+  \linebreak Task 2: Confer as a team to discuss and finalize the interfaces that are required for the sprint
+  \linebreak Task 3: Assign and complete issues
+  \end{itemize}
+  
+  \section{Other Issues}
+  \subsection{Week 5 Client Meeting.}
+  Currently the plan is to discuss the SRS for 10 minutes, then continue with a regular client meeting for the remainder of the time. 
+  \begin{itemize}
+  \item Are there any items or issues/concerns that should be discussed during the client meeting?
+  \end{itemize}
+  \subsection{Weekly Goals}
+  %TODO
+  \begin{itemize}
+  \item Everyone
+  \linebreak Task: Since the SRS is due tomorrow (22nd August), it is requested that everyone spend time familiarizing themselves with the SRS, and completing or editing sections as necessary. The majority of the SRS is now complete, but polishing and final touches need to be completed. ({\bf High  Priority})
+  \end{itemize}
+    \begin{itemize}
+  \item Everyone
+  \linebreak Task: The scrum board for this week has been added to Gihub. Please familiarize yourself with the added interface files and issues to be completed. Begin work on any unassigned issues. ({\bf High  Priority})
+  \end{itemize}
+    \begin{itemize}
+  \item Individual Tasks
+  \linebreak Task: Individual tasks will be discussed in the meeting, and allocated according to people's manager's positions. ({\bf Medium  Priority})
+  \end{itemize}
+%%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next meeting to be held on 28th August 2017.
+  \noindent\linebreak Note: Meeting start-time 2.05pm. End time 3.10pm.
+  \end{flushleft}
+
+  \end{document}

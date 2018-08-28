@@ -1,0 +1,80 @@
+\documentclass[12pt]{report}
+%	options include 12pt or 11pt or 10pt
+%	classes include article, report, book, letter, thesis
+
+\title{SEP-UG02 Coding Style Guide}
+\author{Andrew Graham}
+\date{1 August 2017}
+
+\begin{document}
+\maketitle
+\noindent
+\textbf{File naming:} \newline
+The source file name consists of the case-sensitive name of the top-level class it contains (of which there is exactly one), plus the .java extension. \newline
+
+\noindent
+\textbf{File Headers:} \newline
+Every file must be accompanied with the following comment ``stamp'':
+\newline   /*
+\newline    * filename.java
+\newline    *
+\newline    * Description
+\newline    *
+\newline    * Authors: SEP UG02
+\newline    */
+\newline 
+
+\noindent\textbf{Imports:} \newline   
+\noindent
+Imports follow directly after the file header. Imports are ordered as follows:
+
+1.	All static imports in a single block.
+
+2.	All non-static imports in a single block.\newline
+
+\noindent\textbf{Braces:} 
+
+\noindent Braces are used where optional. That is, braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement.\newline
+
+
+
+\noindent
+\textbf{Variable Declarations:} \newline
+Every variable declaration (field or local) declares only one variable: declarations such as "int a, b;" are not used.
+
+\noindent
+Variables should only be declared when needed.
+
+\noindent
+Local variables are not habitually declared at the start of their containing block or block-like construct. Instead, local variables are declared close to the point they are first used (within reason), to minimize their scope. Local variable declarations typically have initializers, or are initialized immediately after declaration.\newline
+
+\noindent
+\textbf{Commenting:} \newline
+Block comments are indented at the same level as the surrounding code. They may be in /* ... */ style or // ... style. For multi-line /* ... */ comments, subsequent lines must start with * aligned with the * on the previous line.
+\newline
+
+\noindent
+\textbf{Naming:} \newline
+\noindent
+Rules common to all identifiers
+\noindent
+Identifiers use only ASCII letters and digits, and, in a small number of cases noted below, underscores. Thus each valid identifier name is matched by the regular expression w+. \newline
+\textbf{Class Names:} \newline
+\noindent
+Class names are written in UpperCamelCase and are typically nouns or noun phrases. For example, Character or ImmutableList. Interface names may also be nouns or noun phrases (for example, List), but may sometimes be adjectives or adjective phrases instead (for example, Readable).\newline
+\textbf{Test Class Names} \newline
+\noindent
+Test classes are named starting with the name of the class they are testing, and ending with Test. For example, HashTest or HashIntegrationTest.
+
+\noindent
+\textbf{Method Names:} \newline
+\noindent
+Method names are written in lowerCamelCase.
+
+\noindent
+\textbf{Constant Names:} \newline
+\noindent
+Constant names use CONSTANT\textunderscore CASE: all uppercase letters, with words separated by underscores.
+
+
+\end{document}

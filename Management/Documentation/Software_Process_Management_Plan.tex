@@ -1,0 +1,751 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{comment}
+\usepackage{nth}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage{comment}
+\usepackage{rotfloat}
+\usepackage[format=plain,font={footnotesize,it}]{caption}
+\usepackage[parfill]{parskip}
+\addtolength{\textheight}{4cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textwidth}{4cm}
+\addtolength{\hoffset}{-2cm}
+
+%% for citation stuff
+\usepackage[style=verbose]{biblatex}
+\usepackage[bottom]{footmisc}
+
+\usepackage{changepage,titlesec}
+\titleformat{\section}[block]{\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsection} {1em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection} {2em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% force things on the same page
+\newenvironment{absolutelynopagebreak}
+  {\par\nobreak\vfil\penalty0\vfilneg
+   \vtop\bgroup}
+  {\par\xdef\tpd{\the\prevdepth}\egroup
+   \prevdepth=\tpd}
+   
+% subsubsubsection
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{3em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+%Risk template
+\newcounter{riskanalysis}
+\newcommand{\riskanalysis}[6]{\refstepcounter{riskanalysis}\subsection{R\ifnum\theriskanalysis<10 0\fi \ifnum\theriskanalysis<100 0\fi\theriskanalysis: #1}\begin{adjustwidth}{1em}{0pt}\textbf{Description:}\hspace*{2.5mm} #2
+		\ifx #3\empty \else\newline\newline\textbf{Severity:}\hspace*{2.5mm} #3 \fi
+		\ifx #4\empty \else\newline\newline\textbf{Likelihood:}\hspace*{2.5mm} #4\fi
+		\ifx #5\empty \else\newline\newline\textbf{Impact:}\hspace*{2.5mm} #5\fi
+		\ifx #6\empty \else\newline\newline\textbf{Strategies:}\hspace*{2.5mm} #6\fi\newline\end{adjustwidth}}
+        
+\begin{document}
+%% Title Page
+\begin{titlepage}
+	\centering
+    %% Uni logo
+    \begin{figure}[h!]
+    	\centering
+    	\includegraphics[width=.75\textwidth]{Images/Adelaide_logo.jpg}
+    \end{figure}
+    
+    {\bfseries \huge Software Project Management Plan \par}
+    \vspace{.5cm} 
+    {\bfseries\huge Lunar Mapping Rover \par}
+    \vspace{4cm}
+	{{\Large Prepared by UG02} 
+    \vspace{.25cm} 
+    \\ {\large Brock Campbell 
+    \\ Alexander Good
+    \\ Andrew Graham
+    \\ Mitchell Mickan 
+    \\ Saxon A. Nelson-Milton
+    \\ Jiashi (Josh) Song} \par}
+    \vspace{1cm}
+	{\large School of Computer Science, \\ The University of Adelaide \par}
+    \vspace{1cm}
+	{\large \today \par}
+\end{titlepage}
+
+%%Contents Page
+\tableofcontents
+\newpage
+%% WRITTEN BY: Andrew REVIEWED AND EDITED BY:
+\section{Introduction}
+The Software Project Management Plan (SPMP) for the UG02 Software Engineering Project outlines the project management plans in place for this project, and includes details of the project deadlines and deliverables. It also contains sections which outline the assumptions and constraints of this project, a summary of all schedules, and the plan for future changes in the SPMP.
+
+%% WRITTEN BY: Alex, Brock REVIEWED AND EDITED BY:
+\subsection{Purpose and Scope}
+\begin{adjustwidth}{1em}{0pt}
+The following Software Project Management Plan  is written for a prototype Lunar Mapping Rover to be used by Space Explorations in an entry for Google's Lunar XPRIZE Competition. The purpose of the rover will be to map the surrounding area of the Apollo 17 landing site, in order to obtain further information on it's present condition and accompanying artifacts after 4 decades of stagnation.
+
+The first phase of the project consists of doing research and writing the Software Requirement Specification, a complete outline of all requirements required by the system. After the initial 5 week period of requirements elicitation and project preparation, the project moves into the second phase in which the source code of the prototype Lunar Rover is developed using the Agile software process model (outlined in Section 6).
+
+During the second phase, documented weekly group and client meetings will be held to discuss the project progress, and documentation (such as this document) will also be written as well. The main deliverables are the System Requirements Specification, the Software Process Management Plan, the Software Design Document, the Software User Manual, and the source code. Some project deliverables will evolve during different phases of the project.
+\end{adjustwidth}
+
+\subsection{Assumptions and constraints}
+\begin{adjustwidth}{1em}{0pt}
+This section will outline a detailed collection of assumptions and constraints involved with the project. Assumptions are created to define a bare minimum of what can be expected of various aspects of the project, such as assuming that deadlines are set in stone. Constraints are defined to outline what the limits of the project is to ensure that the produced product does not deviate from the expected parameters set by the client, such as limited hardware.
+\end{adjustwidth}
+%% WRITTEN BY: Alex REVIEWED AND EDITED BY:
+\subsubsection{Assumptions}
+\begin{adjustwidth}{2em}{0pt}
+The first assumption is that all team members will be available and will have the necessary technical skills and knowledge required to complete the project requirements. The second assumption will be that there is sufficient resources available to the project team and the provided materials such as hardware and software will be sufficient in order to complete the project requirements. The fourth assumptions is that the pre-determined deadlines and milestones to complete the project and its deliverables are achievable and the project will be completed on time.The final assumption is that the project team will have ongoing support and assistance when necessary from the client, Space Explorations, throughout the duration of the project.\\
+\end{adjustwidth}
+
+%% WRITTEN BY: ???, REVIEWED AND EDITED BY: Alex
+\subsubsection{Constraints}
+\begin{adjustwidth}{2em}{0pt}
+The first constraint is that the data for the survey map will need to be written in the XML format specified in its document type definition (DTD) which has been contracted to an external developer. The second constraint is that the software for the Lunar Rover will need to be written in Java for the LeJOS firmware of the Lego Mindstorm programmable brick. A third constraint is that the software for the user interface will also need to be written in Java and operated within the Java Virtual Machine. The final constraint is that the physical implementation of the system must be constructed using only parts provided in the provided Lego Mindstorm EV3 Kit, except where exceptions are explicitly given by the client. \\
+\end{adjustwidth}
+
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY: Alex
+\subsection{Project deliverables}
+\begin{adjustwidth}{1em}{0pt}
+The final product of this project will be a prototype rover which is capable of traveling at least 500m while autonomously mapping the significant features of the the Apollo 17 landing site and locating its remaining artifacts. It's capabilities will be in line with the specifications set out in the software requirements specification document.
+
+On October 24th, the prototype rover's capabilities will be demonstrated to the client on an A1 demonstration map, showing both its autonomous and manual control mechanisms.\\
+
+Additional deliverables include documentation and the project source code in table 1.\\
+
+\begin{table}[H]
+\caption{Project deliverables and completion dates.}
+  \centering
+\begin{tabular}{ll}
+1. Software Requirements Specification & August 22nd 2017 \\
+2. GUI Prototype and Basic Movement Demo & August 29th 2017 \\
+3. Software Project Management Plan & September 5th 2017 \\
+4. Milestone 1 & September 5th 2017 \\
+5. Milestone 2 & September 12th 2017 \\
+6. Software Design Document & October 3rd 2017\\
+7. Prototype Rover Demonstration & October 24th 2017\\
+8. Source code for all systems developed & October 27th 2017 \\
+\end{tabular}
+\end{table}
+\end{adjustwidth}
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Alex, Brock
+\subsection{Evolution of the plan} 
+\begin{adjustwidth}{1em}{0pt}
+Throughout the project, difficulties may be encountered which would necessitate changes to the current plan. In the event that these difficulties prevent a designated deadline from being met, adjustments will be made to compensate for this. This will be a job assigned to the project manager, who must assess the extent of the changes necessary and adjust the schedule where needed. If necessary, a group meeting will be called to discuss the best course of action. Possible changes to the plan include: changing the goal of the current sprint, re-delegating work, or assigning help to ensure a task is completed. Because the chosen process model is agile, the development of features will be resilient to any changes to personal deadlines and the main cause for concern would be when one of the due dates cannot be met for a deliverable. This would indicate that something has gone very wrong in terms of management and planning.
+\end{adjustwidth}
+
+\begin{comment}
+\section{References}
+Should be obvious...
+%TODO: Add coding style document, SRS Template, SPMP Template, SDD Template
+\end{comment}
+
+\section{Definitions}
+Multiple terms will be adopted throughout this document and inherently the development process. The terms of importance and their definitions are as follows;
+%% TODO: Add any extra definitions as needed
+%% WRITTEN BY: Mitchell, Andrew  REVIEWED AND EDITED BY: Alex
+\begin{description}[style=unboxed,leftmargin=0cm]
+\item[SCRUM:] Scrum is a method of project management for software development centered around breaking work down into sprints and daily progress reports.
+\item[SCRUM Master:] A SCRUM master is the coordinator for an agile development team. Their job is to mediate consensus between the group about what can be achieved and when. 
+\item[Agile:] Agile is a flexible software development method that focuses on delivering working software prototypes early on in the project, and incrementally building on the base prototypes.
+\item[Sprint:] A sprint is a period of time in which agreed upon tasks are to be completed. The duration of a sprint is determined by a SCRUM master and similar periods of time are used for future sprints.
+\item[Feature Driven Development:] Feature driven development is software development process which is driven by the focus on delivering a set group of features at a time rather than the whole product.
+\end{description}
+
+Several acronyms will also be employed. These are defined in table \ref{table:acronyms}.
+
+\begin{table}[ht]
+\caption{Acronyms \label{table:acronyms}}
+  \centering
+  \begin{tabular}{|l|l|}
+  \hline
+  DTD & Document Type Definition \\
+  FDD & Feature Driven Development \\
+  GUI & Graphical User Interface \\
+  JDK & Java Development Kit \\
+  SRS & Software Requirements Specification \\
+  SDD & Software Design Document \\
+  SPMP & Software Project Management Plan \\
+  UML & Unified Modeling Language \\
+  \hline
+  \end{tabular}
+\end{table}
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew, Alex
+\section{Roles and responsibilities}
+\begin{adjustwidth}{0em}{0pt}
+In the development team, each member is allocated a managerial and shadow managerial position. The shadow manager acts as the manager in the first manager's absence or when the first manager is uncertain about a particular decision.\\
+These roles are primarily for managerial purposes and setting standards, not for delegating the entire work load of a particular job to a single person. Each group member is given the opportunity to contribute to all areas of the project. For example, the documentation manager is not expected to write all documentation, and the testing manager isn't expected to do all the testing. Each group member should contribute to all project tasks. Managers are primarily responsible for making any decisions about the project which fall under their role. The allocation of the roles is provide in table \ref{table:Project Roles}.
+
+%% Table of roles
+\begin{table}[ht]
+\caption{Project Roles \label{table:Project Roles}}
+\centering
+\begin{tabular}{|l|l|l|}
+	\hline
+	\bf Role & \bf Holder & Shadow \\ \hline
+	Project Manager & Brock Campbell & Andrew Graham \\ 
+	Design Manager & Saxon Nelson-Milton & Alex Good  \\ 
+	Documentation Manager & Alex Good & Saxon Nelson-Milton  \\ 
+	Requirements Manager/Testing Manager: & Mitchell Mickan & Josh Song  \\ 
+	Quality Assurance & Andrew Graham & Brock Campbell  \\ 
+    UI/Hardware Manager & Josh Song & Mitchell Mickan  \\ \hline
+\end{tabular}
+\end{table}
+
+In addition to the roles listed in table \ref{table:Project Roles}, a rotating schedule will be used for the weekly chairman and the minutes taker. The chairman will be responsible for creating the agendas for the client and group meeting as well as leading both meetings. The minutes taker will need to take minutes for both of these meetings. After the meetings, both the agenda and minute documents will be uploaded to the GitHub repository and the overleaf document will be updated  accordingly. 
+
+\subsection{Project Manager}
+\begin{adjustwidth}{1em}{0pt}
+The project manager is responsible for managing the overall schedule and progress of the project. They are also responsible for risk management which involves identifying, minimizing and handling risks within the project. Specifically the project manager will hold the following responsibilities; 
+\begin{itemize}
+\item Produces and/or approves a proposed project timeline. 
+\item Monitors progress of the project and ensures deadlines are met.
+\item Holds the final say in project decisions. 
+\item Resolves discrepancies.
+\item Resolves disagreements.
+\item Chairs all meetings. 
+\item Acts as primary means of communication with the client. 
+\item Assigns tasks. 
+\item Provides feedback. 
+\item Motivates team.
+\end{itemize}
+\end{adjustwidth}
+
+\subsection{Design Manager}
+\begin{adjustwidth}{1em}{0pt}
+The design manager is responsible for handling the design of software implementation, as well as providing feedback on the physical design of the Rover. Specifically the Design manager will hold the following responsibilities;
+\begin{itemize}
+\item Holds final say in design aspects of the development process.
+\item Approves design documentation. 
+\item Assigns design tasks.
+\item Provides feedback on design tasks.
+\item Checks conformity of implementation with design documentation. 
+\item Communicates with client on aspects of design.
+\end{itemize}
+\end{adjustwidth}
+
+\subsection{Documentation Manager}
+\begin{adjustwidth}{1em}{0pt}
+The documentation manager is responsible for organizing any documents related to the project, and ensuring consistent styles are used throughout this project. Any issues to do with documentation are given the final say by the documentation manager. Specifically the documentation manager will hold the following responsibilities;
+\begin{itemize}
+\item Holds the final say on aspects of development pertaining to documentation.
+\item Approves documentation. 
+\item Assigns documentation tasks.
+\item Provides feedback on documentation tasks. 
+\item Checks conformity of documentation with any predetermined style conventions.
+\item Primary means of communication with client on the regard of documentation.
+\end{itemize}
+\end{adjustwidth}
+
+\subsection{Test Manager}
+\begin{adjustwidth}{1em}{0pt}
+The test manager is responsible for managing the testing and verification of the rover to ensure that it meets the client's requirements. They will oversee JUnit testing code and ensure it's quality. Specifically the testing manager will hold the following responsibilities;
+\begin{itemize}
+\item Produces and/or approves proposed testing plan.
+\item Ensures software confirms with software requirements.
+\item Holds final say on decisions pertaining to testing.
+\item Assigns testing tasks. 
+\item Approves testing results.
+\item Defines and/or approves acceptable testing results.
+\item Primary means of communication with the client on the topic of testing. 
+\item Provides feedback on matters of testing. 
+\end{itemize}
+\end{adjustwidth}
+
+\subsection{Quality Assurance Manager}
+\begin{adjustwidth}{1em}{0pt}
+The quality assurance (QA) manager is responsible for ensuring consistent quality in coding style and will provide feedback on pull requests. Any issues or questions regarding the GitHub repository are directed to the QA manager. Specifically the quality assurance manager will hold the following responsibilities;
+\begin{itemize}
+\item Produces and/or approves quality assurance plan and accompanying style conventions.
+\item Holds final say on decisions pertaining to quality. 
+\item Ensures code conforms with predetermined style conventions.
+\item Communicates with client on topics of quality assurance. 
+\item Assigns quality assurance tasks.
+\item Approves quality assurance tasks.
+\item Provides feedback on quality. 
+\end{itemize}
+\end{adjustwidth}
+
+\subsection{Requirements Manager}
+\begin{adjustwidth}{1em}{0pt}
+The requirements manager is responsible for handling requirements and making sure that they are taken into account during the product's development. They are also responsible for handling any new requirements and working with the design manager and project manager to make sure they fit in with the user's needs. Specifically the requirements manager will hold the following responsibilities;
+\begin{itemize}
+\item Produces and/or approves requirements.
+\item Holds final say on decisions pertaining to requirements. 
+\item Ensures requirements are accounted for in the software requirements specification. 
+\item Approves software requirements specification.
+\item Ensures team understands requirements.
+\item Communicates with client on topics pertaining to requirements.
+\item Ensures that product conforms to requirements. 
+\end{itemize} 
+\end{adjustwidth}
+
+\subsection{UI/Hardware Manager}
+\begin{adjustwidth}{1em}{0pt}
+The UI/Hardware manager is responsible for managing the implementation of the UI which includes design and having the say on any changes to be made, and the physical design of the prototype rover. Specifically the requirements manager will hold the following responsibilities;
+\begin{itemize}
+\item Works with design manager to produce and/or approve GUI and hardware designs.
+\item Holds final say on UI design.
+\item Holds final say on hardware design.
+\item Communicates with client on topics of UI/Hardware design.
+\item Assigns hardware design and implementation tasks.
+\item Assigns UI development tasks. 
+\item Provides feedback on UI tasks.
+\end{itemize} 
+\end{adjustwidth}
+
+\begin{comment}
+\begin{description}[style=unboxed,leftmargin=0cm]
+\item[Project Manager:] The project manager is responsible for managing the overall schedule and progress of the project. They are also responsible for risk management which involves identifying, minimizing and handling risks within the project.
+\item[Design Manager:] The design manager is responsible for handling the design of our software implementation, as well as providing feedback on the physical design of the Rover.
+\item[Documentation Manager:] Documentation manager is responsible for organizing any documents related to the project, and ensuring consistent styles are used throughout this project. Any issues to do with documentation are given the final say by the documentation manager. 
+\item[Test Manager:] The test manager is responsible for managing the testing and verification of the rover to ensure that it meets the client's requirements. They will oversee JUnit testing code and ensure it's quality.
+\item[Quality Assurance Manager:] The quality assurance (QA) manager is responsible for ensuring consistent quality in coding style and will provide feedback on pull requests. Any issues or questions regarding the GitHub repository are directed to the QA manager.
+\item[Requirements Manager:] The requirements manager is responsible for handling requirements and making sure that they are taken into account during the product's development. They are also responsible for handling any new requirements and working with the design manager and project manager to make sure they fit in with the user's needs. 
+\item[UI/Hardware Manager:] The UI/Hardware manager is responsible for managing the implementation of the UI which includes design and having the say on any changes to be made, and the physical design of our prototype rover.\\
+\end{comment}
+
+
+\end{adjustwidth}
+
+\section{Risk management plan}
+This section outlines the potential risks involved in the project as well as strategies that will be used in the event that a problem occurs. Comprehensive risk analysis was performed on all aspects of the project to identify every possible source of problems within the project. For each identified risk, the severity, likelihood, project impact and strategies used to minimise the risk were defined. A higher severity indicates a potential risk with huge impacts on project productivity and product development, and a higher likelihood indicates a higher chance of the problem occurring.
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew, Alex
+\riskanalysis{Member Unavailable}
+{The project's progress could be affected if a group member is unavailable to do work for one reason or another.} %Description
+{Low} %Severity
+{High} %Likelihood
+{Work may need to be reassigned and in the worst-case, deadlines will need to be adjusted.} %Impact
+{Each role of the project has a shadow role as backup. If the member who takes on a role is unavailable, the role's shadow will take over. If both members are unavailable, the project manager will assign another member or members to the role, and if necessary, they will take over responsibly of any necessary tasks.} %Strategies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew, Alex
+\riskanalysis{Loss of Work}
+{During the project work may be lost due to technical failure or items going missing. } %Description
+{Low} %Severity
+{Medium} %Likelihood
+{Work may need to be completely redone or ideally it will backed up and be quickly recoverable.} %Impact
+{Due to the nature of the project, most of the work will be stored digitally and will be backed up regularly to either GitHub or Overleaf to minimize the impact of loss. Material items such as the Lego Mindstorm kit will need to be stored securely in a locker and extra care will need to be taken during transportation of these items.} %Strategies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew, Alex
+\riskanalysis{New or Revised Requirement}
+{During the project new requirements may arise or existing requirements may be revised and the group will need to be prepared to adapt the project accordingly.} %Description
+{Medium} %Severity 
+{Low} %Likelihood
+{Depending on the type of requirement, a new requirement may completely change the project's course. Adjusting to new requirements may mean needing to prioritize or redistribute work to meet deadlines.} %Impact
+{The selected process model allows for flexibility and adaption to changing requirements. Sprints will be utilized to handle these changes and if necessary, in order to meet deadlines, design changes will be discussed. To avoid large impacts on the project, software will be implemented with a high degree of modularity.} %Strategies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew, Alex
+\riskanalysis{Rover Damage, Hardware Failure or Loss}
+{The rover may be damaged due to misuse or hardware failure. } %Description
+{High} %Severity
+{Low} %Likelihood
+{Parts may need to be replaced and this could mean recalibrating or redesigning the rover and/or software.} %Impact
+{Utmost care will be taken when handling the rover. Members will avoid operating the rover in areas where it could be damaged and extra care will be given if there is the chance that the rover could fall. Random failures may be unavoidable, therefore the aim will be to structure the development process to minimize the impact of not having complete access to the rover.} %Strategies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew, Alex
+\riskanalysis{Failure to Meet Deadlines}
+{Due to insufficient planning or other unforeseen circumstances, deadlines may not not be reached. } %Description
+{High} %Severity 
+{Low} %Likelihood
+{Failure to meet a deadline will have a large impact on the project's performance and outcome. Unmet deadlines will need to be prioritized and completed as soon as possible, which may result in other tasks being postponed and further progress of the project being impacted. } %Impact
+{Major deadlines are known well in advance so with proper planning, the project schedule and workflow can be adjustable to meet deadlines. Adjustments could include redistributing tasks, increasing workload and adjusting short term goals. } %Strategies
+
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY: Mitchell, Alex
+\riskanalysis{Client Unable to Attend Meetings}
+{Client is unavailable for a meeting} %Description
+{Medium} %Severity %Alex: I think this could be low given the amount of tasks
+{Medium} %Likelihood
+{If the client is unable to attend a meeting, issues of discussion may be delayed for a week, and may have a significant impact on project progress that week. This may result in the delays to the project's development, deadlines being impacted and tasks needing to be reorganised. } %Impact
+{If the client is unavailable for a weekly meeting, small issues may be discussed with the client over email and larger issues may mean having to organise another meeting as soon as the client is available. Should neither options be possible, the issue will be worked around until it can be resolved.} %Strategies
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\riskanalysis{Team Member Inexperience}
+{Due to the fast pace nature of the project and the many new technologies being introduced, there may be a lack of knowledge and skills within the team. Team members may have to pick up new skills during the completion of task and deadlines may be underestimated or impacted. } %Description
+{Low} %Severity
+{High} %Likelihood
+{Mistakes may be made in the implementation of features, the project's progress may be impacted and a lack of experience may mean that errors are left unnoticed or difficult to correct. } %Impact
+{In order to overcome this risk, members are expected to pick up new skills and knowledge during the project, share any current or gained knowledge with their team mates where relevant and discuss with the group any problems faced during the completion of tasks. This can be done formally during group meetings or informally over Discord.} %Strategies
+
+%% WRITTEN BY: Andrew, Brock, REVIEWED AND EDITED BY: Saxon
+\section{Process model}
+This project will adopt an adaption of the Agile software development process model. The model starts by defining a product backlog based on the Software Requirements Specification. The product backlog is a prioritized list of requirements written as User Stories. At the start of each 2-week extended sprint, a number of User Stories are selected to be implemented during the sprint in the Sprint Backlog. Each User Story is evaluated for the relative work required to complete the feature, according to the Agile process model.
+
+The assignment of user stories to developers is based on a voluntary approach, whereby any developer can implement any user story as long as no other developers are currently working on it. The motivation for a developer to volunteer to implement a particular user story is the promise of additional hours being tracked on their contributions for that week, which will increase their grade at the end of the project.
+
+During the sprint, daily updates on the sprint progress are discussed through the dedicated developer communication platform. At the end of the sprint, a working increment of the software is delivered to the customer for feedback.
+
+Each sprint will be managed by two group members with the roles of Product Manager and Scrum Master. 
+
+The Product Manager's role is to convey to the scrum team what the goal for the sprint is, what the deliverable should be at the end of the sprint, and to evaluate whether the product was delivered successfully. The Scrum Master's role is to create, manage, and close issues for each user story in the sprint, as well as be the first point of contact for any problems during the sprint. The Product Manager role will be given to the Project Manager, and the Scrum Master role will be on a rotation such that each group member will be Scrum Master at least once.
+
+In the event that a sprint is unsuccessful, unfinished or the delivered product is not usable, it is the Product Manager's role to transfer the unfinished work to the Product Backlog with a high priority to be implemented in the next sprint. A graphical portrayal of this model is shown in figure \ref{fig:agile process}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/Scrum_process.png}
+    \caption{The Agile Process - Image \textcopyright \space
+Lakeworks \url{https://commons.wikimedia.org/wiki/File:Scrum_process.svg} \label{fig:agile process}}
+\end{figure}
+
+
+
+%% WRITTEN BY: Brock, REVIEWED AND EDITED BY:
+\section{Work plan}
+This section of the project management plan will encompass every detail related to the deliverables of the project, the product development schedule, and the intelligent allocation of resources (people and hours) to promote productivity.
+\subsection{Work activities}
+\begin{adjustwidth}{1em}{0pt}
+The work activities of the project are all aspects of the project related to the deliverables of the project. The deliverables of the project include documentation, a prototype Lunar Rover, a graphical user interface to control the rover, and the construction of a survey map when running the prototype on a sample survey area. Since each of these deliverables encompass large tasks, they will be deconstructed into smaller, more manageable tasks. 
+\end{adjustwidth}
+
+\subsubsection{Documentation}
+\begin{adjustwidth}{2em}{0pt}
+The documentation deliverables for this project involve weekly management documents for group and client meetings (agendas and minutes), as well as major design documents (such as this document), and review documents. The specific list of all documentation deliverables is outlined in section \ref{documentation plan}.
+\end{adjustwidth}
+
+\subsubsubsection{Weekly Documentation}
+\begin{adjustwidth}{3em}{0pt}
+Each week, the meeting chair and minutes writer are rotated according to a predefined roster. It is the responsibility of these roles to create the agenda and write the minutes for both the group meeting and client meeting for that week.
+\end{adjustwidth}
+
+\subsubsubsection{Major Design Documents}
+\begin{adjustwidth}{3em}{0pt}
+The major design documents (SRS, SPMP, SDD), are constructed over time. Any contributions made by group members to specific sections of the documents are documented by comments before each section in the \LaTeX documents, and also by the record of hours each member spent working on sections of the document.
+\end{adjustwidth}
+
+\subsubsubsection{Review Documents}
+\begin{adjustwidth}{3em}{0pt}
+There are 7 review documents to be created (outlined in \ref{documentation plan}), with each review covering a main aspect of the project. Each group member will write one review document that is most relevant to their managerial role (outlined in table \ref{table:review documents}). There are 6 members in the development team, therefore only six of these documents are to be written. 
+
+\begin{table}[H]
+ \caption{Documentation reviews and completion dates.}
+  \label{table:review documents}
+  \centering
+  \begin{tabular}{|l|l|}
+  \hline
+    1. Software Requirements Specification Review & Mitchell Mickan \\
+    2. Software Process Management Plan Review & Brock Campbell \\
+    3. Risk Management Plan Review & Alexander Good \\
+    4. Configuration Management Plan Review & Andrew Graham \\
+    5. Software Design Document Review & Saxon A. Nelson-Milton \\
+    6. Code Review & Jiashi Song \\
+    \hline
+  \end{tabular}
+ 
+\end{table}
+\end{adjustwidth}
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsection{Lunar Rover}
+\begin{adjustwidth}{2em}{0pt}
+	Being the most important deliverable of the project, the design and implementation of the Lunar Rover is of highest focus. The stages of the Rover's  development can be viewed as design, basic movement, sensor detection, Navigation and finally Mapping.  %% Crappy introduction will be fixed
+\end{adjustwidth}
+
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Design}
+    \begin{adjustwidth}{3em}{0pt}
+    	The first task in the building of the Lunar Rover is it's design. To decide on how the Lunar Rover will be assembled using the parts available in the Lego Mindstorm Ev3 kit, the project group will look to the User Requirements as specified by the client in the Software Requirements Specification for guidance.\\\\
+        \begin{comment}
+The touch sensors would be placed on either side of the front to prevent collision during forward movement. The ultrasonic placed in the front centre to detect, prepare for and map obstacles in the distance. The gyroscope placed in the centre between the wheels to accurately detect the Rover's rotation. The colour sensor placed beneath the ultrasonic facing downwards close to the surface to accurately detect and map features of the surface. And most importantly each motor would control and individual wheel to allow for not just forward and backward movement but also rotation. 
+\end{comment}
+	\end{adjustwidth}
+
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Basic movement}
+        \begin{adjustwidth}{3em}{0pt}
+    	The next important task is implementing the software to allow for simple movement such as forwards, backwards and rotation. The diameter of the wheels would be measured to calculate the rotation of the wheels required to move a specified distance and the distance between the wheels would be measured to calculate the rotation of the wheels required to turn a specific degree of rotation. The decision to rotate one wheel clockwise and the other anti-clockwise during rotation meant the rover's axis of rotation would be its centrepoint and optimal utilisation of the gyroscope.
+	\end{adjustwidth}
+    
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Sensor Detection}
+    \begin{adjustwidth}{3em}{0pt}
+    Each of the sensors will be configured according to Table \ref{table:Sensor Implementations} and individually tested to confirm that the are able to be correctly sampled. 
+    
+    \begin{table}[H]
+    \begin{adjustwidth}{3em}{0pt}
+\caption{Sensor Implementations\label{table:Sensor Implementations}}
+\begin{tabularx}{\linewidth}{|l|X|X|}
+\hline
+\textbf{Sensor(s)} & \textbf{Use}                                                 & \textbf{Testing}                                                                                                                            \\ \hline
+Touch Sensors      & Prevent forward collision where the ultrasonic sensor fails. & On activation of either of the touch sensors, the rover will stop forward movement, reverse and turn to avoid the obstacle.                 \\ \hline
+Ultrasonic         & Detect and plan for distance objects and obstacles.          & The rover is able to correctly detect obstacles in the distance and will avoid collision before the touch sensors are triggered.            \\ \hline
+Colour Sensor      & Detect feature of the surface.                               & The rover is able to accurately detect colours underneath the color sensor and respond appropriately.                                       \\ \hline
+Gyro Sensor        & Detect velocity of rotation.                                 & The rover is able to read rotational velocity which can be used to deduce position, and mitigate compound errors that result from rotation. \\ \hline
+\end{tabularx}
+\end{adjustwidth}
+\end{table}
+    \end{adjustwidth}
+    
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Navigation}
+    \begin{adjustwidth}{3em}{0pt}
+    In this stage of the rover's development, the configured sensors would be utilized together and used to autonomously and manually navigate the rover around the map. For manual control the rover would be configured to take instructions from the graphical user interface and also transmit sensor data to the graphical user interface. During autonomous control the rover should be able to demonstrate that it can avoid obstacles and stay within boundaries.
+   \end{adjustwidth}
+   
+   %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Mapping}
+    \begin{adjustwidth}{3em}{0pt}
+    In the final stage of the Rover's implementation the rover will be configured to track its location and map the features of it's environment, such as its distance from obstacles and the color detected by the colour sensor at its location. This will be done with the help of a Simultaneous Localisation And Mapping (SLAM) algorithm along with LeJOS' FourWayGridMesh. The data collected would be savable and again loadable to and from the XML format as specified in the yet to be released document type definition. 
+    \end{adjustwidth}
+    
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsection{User Interface}
+\begin{adjustwidth}{2em}{0pt}
+	The user interface will be used by the client to control and read input from the Lunar Rover.
+	\end{adjustwidth}
+    
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Design}
+    \begin{adjustwidth}{3em}{0pt}
+    	The first step in creating the user interface will be to design what it's appearance and features that it provides. To do this, the primary source will be the Software Requirements Specification which was written to the desires of the client. Included will be a view of the rovers collected map, helpful sensor data and most importantly controls for the Lunar Rover and the option to switch between Manual and Automated mode.
+    \end{adjustwidth}
+    
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+	\subsubsubsection{Basic Control and Sensor Readings}
+    \begin{adjustwidth}{3em}{0pt}
+    Once a design for the User Interface has been agreed upon, the user interface will be implemented and connected to the Lunar Rover. The controls for the Lunar Rover will be implemented so that the rover is able to respond to forward, backward and rotational movement from the user interface. The rover should also be able to transmit sensor data so that is can be displayed on the user interface. This can be used in the next stages to debug any problems with the rover's navigation.
+    \end{adjustwidth}
+    
+    %% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+    \subsubsubsection{Mapping Data}
+    \begin{adjustwidth}{3em}{0pt}
+    Once the Lunar Rover is able to correctly utilize its sensors and create mapping data, this data will be transmitted so that it can be published to the user interface. This data will be saved within the XML format as specified within the document type definition so that it can be loaded later on.
+    \end{adjustwidth}
+    
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:    
+\subsubsection{Demonstration Map}
+\begin{adjustwidth}{2em}{0pt}
+In order to test the functionality of the prototype rover, a  A1 sized demonstration map will be constructed.
+    \end{adjustwidth}
+    
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsubsection{Design}
+\begin{adjustwidth}{3em}{0pt}
+The design for the A1 sized demonstration map will be crucial to the correct demonstration of the rover's abilities. For this reason, it will be inspired by both the Apollo 17 Landing Site and the User Requirements as given in the Software Requirements Specification. The design will need to be reviewed by the client and all team members in order to confirm that it will be able to correctly demonstrate the requirements of the Lunar Rover. The low budget of the project team also means that it needs to demonstrate these capabilities on a minimalist design.
+\end{adjustwidth}
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsubsection{Assembly}
+\begin{adjustwidth}{3em}{0pt}
+The map will be designed on A1 sized paper or assembled in A1 size using A4 segments. Obstacles on the map will need to be placed firmly and checks will need to be done to confirm that the obstacles won't be damaged during the demonstration.
+\end{adjustwidth}
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsubsection{Demonstration}
+\begin{adjustwidth}{3em}{0pt}
+The final stage of the map development will be to test that the rover is able to navigate around the A1 map an that the features of the map can be correctly and easily distinguished by the rover's sensors.
+\end{adjustwidth}
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsection{Milestones}
+\begin{adjustwidth}{1em}{0pt}
+Two milestones have been proposed for this project. These are shown in table \ref{table:milestone details}.
+
+\begin{table}[H]
+\caption{Milestone Details \label{table:milestone details}}
+\begin{tabularx}{\linewidth}{|l|X|}
+	\hline
+	\bf Milestone 1 & \begin{enumerate}
+                      	{\bf \item  Rover Movement (Forward, Back, Left, Right)} \newline 
+                        	The Rover should be able to demonstrate forwards and backwards movement, and the ability to rotate left and right. \newline 
+                        {\bf \item Reading Sensor Data} \newline 
+                        	The Rover should be able to read input from all of its sensors (bump, colour, ultrasonic and gyroscope) and display it for the .  \newline 
+                        {\bf \item Manual Control via UI} \newline 
+                        	The rover should be controllable via the user interface. Implemented controls should include forward movement, backward movement, left (anti-clockwise) rotation and right (clockwise) rotation buttons.  \newline 
+                        {\bf \item Prototype A1 Map} \newline 
+                        	An appropriate prototype A1 map will be demonstrated containing all significant features, on which the Rover's ability to satisfy user requirements will later be presented.
+                      \end{enumerate}
+                      ~\newline{\bf To be shown on September 12th} \\
+    \hline
+	\bf Milestone 2 & \begin{enumerate}
+                      	{\bf \item Interpret Sensor Data} \newline The rover should be able to interpret the sensor data to work out what obstacle it has come upon.
+                        	 \newline 
+                        {\bf \item Adjust Movement according to Sensors} \newline The rover should adjust it's movement according to the sensor data it receives. E.g. if it realizes it is in a no go zone it should move back and attempt to go around.
+                        	  \newline 
+                        {\bf \item Display Map on GUI Prototype} \newline Display an early version of the map on GUI display from the rover sensor data containing all detected map features.
+                        	 \newline 
+                        {\bf \item Autonomous Movement} \newline The rover should be able to move autonomously within the physical A1 map avoiding obstacles as needed.
+                        	  \newline 
+                      \end{enumerate}
+                      ~\newline{\bf To be shown on October 3rd} \\
+    \hline
+\end{tabularx}
+\end{table}
+\end{adjustwidth}
+
+
+%% WRITTEN BY: Brock, REVIEWED AND EDITED BY: Saxon
+\subsection{Schedule allocation}
+\begin{adjustwidth}{1em}{0pt}
+
+The project timeline, outlining the week-by-week breakdown of project tasks and key deliverables, will be visualised using a Gantt chart, which can be found in Appendix \ref{appendix:gantt_chart}. The project timeline outlines the general tasks to be completed each week, separated into subsections. The green sections indicate the span of time a particular sub-section of tasks occupies and the gray sections outline the start date and duration of each task in the sub-sections. Main project milestones are marked clearly with vertical lines, and the final project deadline is marked as a red column in the final week. Finally, the deliverable documentation is an ongoing task and therefore the appropriate sub-sections are at the bottom of the chart.
+
+The project timeline acts as both an initial project management plan and a summary of project deliverables. The percentage completion of the project during development can be calculated by inspecting the chart and determining what tasks have been completed. To identify whether the project is on schedule, the current state of the project can be compared to the expected state of the project outlined in the chart, and necessary changes to the plan can be made to ensure the final project gets delivered on schedule. Additionally, the deadlines of all intermediate milestone and documentation deliverables are clearly outlined on the chart, which will be used to ensure all of the expected deadlines are met and that developers are always aware of what tasks need to be completed at any stage of the project.
+
+\end{adjustwidth}
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\subsection{Resource allocation}
+\begin{adjustwidth}{1em}{0pt}
+At the beginning of each sprint cycle, the tasks that still need to be completed from the last sprint will be carried over to the current sprint, and any new tasks that need to be completed will also be added to the sprint backlog. Once the sprint backlog has been filled, the list of tasks to be completed will be allocated to developers. This is done by the Scrum master who will attempt to allocate tasks such that there is an even distribution of work. This is not a hard and fast rule, however if issues come up due to someone being busy or other reasons the work may be distributed differently. If an individual is struggling with their task they are expected to seek assistance from other group members. Since the sprints are meant to be flexible, if work isn't completed during that week for some reason it can be added to the next weeks sprint. For the client and group meetings, a rotating roster will be used such that every group member has opportunities to be meeting chair and take the minutes
+\end{adjustwidth}
+
+\section{Supporting plans}
+In addition to the aforementioned risk analysis and product development plans, additional plans pertaining to the management of source code and documentation will be defined. The configuration management plan outlines the processes that will be adopted to manage the source code repository. The documentation plan describes the use of documentation templates and the processes involved in creating each deliverable document. Finally, the quality assurance plan outlines the steps that will be taken to ensure that code and documentation quality is measurable and maintained across all revisions of the software.
+
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY:
+\subsection{Configuration management plan}
+\begin{adjustwidth}{1em}{0pt}
+The configuration management plan covers all aspects of managing the central repository. This includes ensuring that an appropriate workflow is used and followed, and that any updates to the repository don't introduce any problems. Management of the central GitHub repository is the primary role of the Quality Assurance manager, however any member is able to manage and update the central repository, provided that they follow the appropriate workflow.
+
+The repository has been separated into three major subdirectories which separate the documentation, Lunar Rover source code, and the UI code. The documentation folder contains client and group meeting agendas and minutes, as well as a series of other documents such as the SDD, SPMP, SRS and other deliverables for this project. The Lunar Rover subdirectory contains all code pertaining to the development of the rover. And the UI subdirectory contains all of the code for the UI. Both code directories have a set structure which store source code, compiled code and compilation settings.
+
+The Git workflow being used by this project is the Feature-Branch workflow. In this workflow, the development of each feature of the Lunar Rover or UI software is isolated onto a single branch. When completed, the features enters a code review through a GitHub pull request, where another developer will compile and confirm that the implemented feature works. The completed feature will then be merged into the central repository by the feature developer.
+
+When a set of features has been implemented for a particular sprint, the central repository is to be tagged with an appropriate version number to signify that a working increment of the software has been released. These version numbers start in alpha with a version of 0.0 and increment by 0.1 for every successfully completed sprint, and 0.01 for each successfully completed feature. Furthermore, if any released version has an outstanding bug with the source code, a dedicated hotfix branch will be created to fix the bug, and then apply the fixes to the central repository through a pull request. In this way, hotfixes, feature development and releases are kept isolated.
+\end{adjustwidth}
+
+%% WRITTEN BY: Mitchell, Andrew, REVIEWED AND EDITED BY:
+\subsection{Documentation plan} \label{documentation plan}
+\begin{adjustwidth}{1em}{0pt}
+Most of the documentation will be worked on collaboratively using an online platform known as overleaf. This site allows multiple people to work on the same document in real time. All of the documents will be written in \LaTeX as it allows for high quality documents with consistent style.
+
+The Documents to be completed for the project are divided into 2 categories:
+\end{adjustwidth}
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsection{Design Documents}
+\begin{adjustwidth}{2em}{0pt}
+The design documents are crucial to the planning,implementation, validation and verification of the project. They allow for little ambiguity in the software implementation and set a standard for the project which the project group can follow. The following sub-sections outline the core design documents of the project.
+\end{adjustwidth}
+
+\subsubsubsection{Software Requirements Specification (SRS)}
+\begin{adjustwidth}{3em}{0pt}
+This document will specify all the requirements to be delivered for the rover. It will also go into detail about the resources that are available for the project. 
+\end{adjustwidth}
+
+\subsubsubsection{Software Process Management Plan (SPMP)}
+\begin{adjustwidth}{3em}{0pt}
+The SPMP will go in to detail about the organizational structure of the project and any management plans to follow during the project. This document will be referred to during the project to ensure that the project is on track for completion.
+\end{adjustwidth}
+
+\subsubsubsection{Software Design Document (SDD)}
+\begin{adjustwidth}{3em}{0pt}
+The SDD will be a written description of the design of the software system that is being implemented.  It will be used to guide the development process and outline the system architecture for developers and interested parties.
+\end{adjustwidth}
+
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\subsubsection{Review Documents}
+\begin{adjustwidth}{2em}{0pt}
+Accompanying each of the documents will be a review, of which at-least one will be completed by each member of the team. The following sub-sections discuss these review documents.
+\end{adjustwidth}
+
+%% WRITTEN BY: ???, REVIEWED AND EDITED BY:
+\subsubsubsection{SRS Review Document}
+\begin{adjustwidth}{3em}{0pt}
+This document will be a review of the SRS and go into detail about possible improvements that could have been made and what was done particularly well.
+\end{adjustwidth}
+
+\subsubsubsection{SPMP Review Document}
+\begin{adjustwidth}{3em}{0pt}
+This document will be a review of the SPMP and talk about what processes were well defined and what turned out to be lacking in detail.
+\end{adjustwidth}
+
+\subsubsubsection{SDD Review Document}
+\begin{adjustwidth}{3em}{0pt}
+This document will be a review of the SDD. It will go into detail about what design ideas seemed good at the time and how they are in hindsight as well as any reasoning as to why the design changed.
+\end{adjustwidth}
+
+\subsubsubsection{Risk Management Plan Review Document}
+\begin{adjustwidth}{3em}{0pt}
+This document will be a review of the risk management plan outlined in this document. Specifically it will talk about what areas were covered well and were useful to the project, and any possible risks that may have been overlooked. 
+\end{adjustwidth}
+
+\subsubsubsection{Configuration Management Plan Review Document}
+\begin{adjustwidth}{3em}{0pt}
+This document will be a review of the configuration management plan. The review will discuss whether the plan appropriately covered everything that was needed or whether any changes were made.
+\end{adjustwidth}
+
+\subsubsubsection{Code Review Document}
+\begin{adjustwidth}{3em}{0pt}
+This document will be a review of the code that will be produced. It will discuss things such as whether the  coding style was consistent and whether handle all possible edge cases were handled correctly.
+\end{adjustwidth}
+
+\subsubsection{Further Documentation}
+\begin{adjustwidth}{2em}{0pt}
+As well as these documents, there will also be agenda and minutes documents from the weekly group and client meetings. These will both be written for each client and group meeting and will follow a predefined template developed at the beginning of the project.
+\end{adjustwidth}
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andrew
+\subsubsection{Preparation Process}
+\begin{adjustwidth}{2em}{0pt}
+To prepare the creation of the document a member of the group will begin by making a rough template to follow. This template will have headings and any \LaTeX classes needed to contribute to the sections. If there is an example template document, it will be used as a guide to create the skeleton of the document and changes will be made to suit the current document type. This template will be written on overleaf and after it is completed work can be started on the content of the document. The exception to this process are the review documents and agenda/minutes which will be completed individually as best seen fit. 
+\end{adjustwidth}
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY: Andredw
+\subsubsection{Review Process}
+\begin{adjustwidth}{2em}{0pt}
+Since most of the documentation is written using \LaTeX, extensive comments will be used to keep track of authors of various sections of the document. Above each section written there will be a comment, "WRITTEN BY: name1, REVIEWED AND EDITED BY: name2, name3". This allows the group to keep track of the sections that have been reviewed and those that haven't. After each section of the document is written it is to be reviewed by multiple people who will add their names to the list of reviewers. This ensures that multiple people have looked over each section of the document during the writing process which helps to keep a consistent style. After the completion of the document all members of the group are expected to do one final review and discuss if they think any changes are necessary.
+\end{adjustwidth}
+
+%% WRITTEN BY: Andrew, Brock, REVIEWED AND EDITED BY:
+\subsection{Quality assurance plan}
+\begin{adjustwidth}{1em}{0pt}
+The quality of the product is related to the source code that is produced, as well as the quality of the documentation along the way. A number of guides are in place to ensure the final quality of the product. It is expected that all developers follow these guides while developing code, and that these guides are consulted during code review. In general, it will be the Quality Assurance manager's job to oversee the quality of the product, and all queries or grievances regarding quality will be addressed to the said manager. However, in practice, all developers assume the role of a QA manager for their own development before submitting anything for review.
+
+\subsubsection{Code Quality}
+\begin{adjustwidth}{1em}{0pt}
+Firstly, a simplified coding style guide has been created to define a unified coding style. The style guide is based on the official Google Java style guide. This guide includes naming conventions, how to structure individual class files, commenting, bracketing and other coding recommendations. This guide contains the bare basics of coding style. A flexible, hands-on approach will be taken to monitoring coding style, which will allow developers to focus on the quality of their code rather than worrying overly about style. Typically, coding style will be reviewed while approving pull requests.
+
+Secondly, another guide for developers has also been produced outlining the GitHub workflow that the group will be utilizing. This outlines with a practical example of what a typical workflow would entail along with command line instructions for each step. This will ensure that GitHub branching and pull requests are used correctly, and will result in a unified workflow for developers.
+\end{adjustwidth}
+
+\subsubsection{Documentation Quality}
+\begin{adjustwidth}{1em}{0pt}
+The quality of the documentation produced by the project will also need to be maintained. As outlined in the documentation plan in section \ref{documentation plan}, there are two main strategies that are employed to ensure that the overall quality of the documentation is maintained. Firstly, template files have been created and are to be used for each piece of documentation that is created. These templates ensure that every new piece of documentation follows a predefined and consistent format. Secondly, all documentation is to be fully proof-read by at least 3 people. One of these people must be the documentation manager, and the other two must be familiar with the documentation standards. The combination of these two strategies will ensure that the documentation produced during the project is of high quality and most importantly of consistent style.
+\end{adjustwidth}
+\end{adjustwidth}
+\pagebreak
+
+\begin{absolutelynopagebreak}
+  \section{Appendix}
+  \appendix
+  \section{Project Timeline Gantt Chart} \label{appendix:gantt_chart}
+  \vspace{-9em}
+  \begin{sidewaysfigure}[H]
+  	\includegraphics[scale=0.70]{Images/Gantt_Chart.png}
+    \caption{Project Schedule Gantt Chart}
+    \label{fig:gantt_chart}
+  \end{sidewaysfigure}
+\end{absolutelynopagebreak}
+\end{document}

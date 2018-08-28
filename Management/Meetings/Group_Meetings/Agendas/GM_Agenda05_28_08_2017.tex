@@ -1,0 +1,124 @@
+  %%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{ Fifth }
+  \newcommand{\meetinglocation}{ Atrium, Ingkarni Wardli } %% Location
+  \newcommand{\meetingdatetime}{ 2.00pm on Monday 28th August 2017 } %% Date and time
+  \newcommand{\meetingchair}{ Nathan } %% Chair
+  \newcommand{\meetingminutes}{ Josh } %% Minutes
+
+  \begin{document}
+
+  \noindent The {\em \meetingno} Software Engineering Group Project weekly meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+  \begin{flushleft}
+  
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+  \vspace*{10pt}
+
+  \section{Apologies}
+	N/A
+
+  \section{Presentation}
+	N/A
+  
+  \section{Software Project Management Plan (SPMP)}
+		{The SPMP is due on the fifth of September, which is next Tuesday, making it relevant to the client meeting during next week. As of Sunday, this document appears to be empty. Some information pertaining to the document should be contained within existing meeting minutes documents. Choice Sections of the document include:
+		\begin{itemize}
+		\item Introduction
+		\begin{itemize}
+		\item Project Deliverables
+		\item Evolution of the Plan
+		\end{itemize}
+		\item Roles and Responsibilities
+		\item Risk Management Plan
+		\item (Development)Process Model
+		\item Work Plan
+		\begin{itemize}
+		\item Work Activities
+		\item Milestones
+		\item Schedule Allocation
+		\item Resource Allocation
+		\end{itemize}
+		\item Supporting Plans
+		\begin{itemize}
+		\item Configuration Plan
+		\item Documentation Plan
+		\item Quality Assurance Plan
+		\end{itemize}
+		
+		In this meeting, I would like to go through each of these sections and ensure relevant details will be recorded in the minutes so that we have \textit{ideally} enough information to complete the document.
+\end{itemize}		 }
+
+  \section{GUI Prototype}
+  This is due tomorrow morning. I thought this was complete, but when I tried to run the program, it failed. That might be my fault. What is the current stage the UI prototype is at? What needs to be done before the due date? What challenges is the development of the prototype facing? Do you know which requirements this prototype meets? How should the GUI prototype be demonstrated to the client?
+  
+  \section{Basic Movement Demo}
+  This is also due tomorrow morning. What is the current stage the program is at? What needs to be done before the due date? How should the movement be demonstrated to the client? What challenges is the development of the demo facing? \\
+  On Discord, Alex suggested the following subtopics to discuss:
+  \begin{itemize}
+  \item Coordinating bumpers and forward movement (use of threads, calculating distance moved if stopped)
+  \item Resolving accuracy issues with rotation (If the distance between our wheels is a nice multiple of 56mm or if we made it so, this is actually not an issue at all)
+  \item Accuracy issues with forward movement (calculation of degrees of rotation to mm)
+  \end{itemize}
+	
+  \section{Physical Survey Map}
+  Who is developing the Physical Survey Map? Which stage of development is the map at? What needs to be achieved such that the Physical Survey Map can be demonstrated tomorrow? How should the map be demonstrated to the client?
+	
+  \section{Software Design Documentation}	
+  The current tool being used is Gliffy. This requires accounts, and has a time restricted trial. What happens when the trial ends?\\
+  The current design document only has a static model. Why isn't there a dynamic model?
+
+  \section{Challenges with Testing}
+  The current design has a notably few accessor methods. This will need to be updated to accommodate hardware and software testing.\\ To test the rover in software, rover hardware may need to be simulated as well. Should we do this, and how should we go about it?
+  
+  \section{Client Meeting}
+  Excluding the presentation of the rover, the map, and the UI, what is the expectation of the next client meeting? What is to be added to the agenda?
+	
+  \section{Software Requirements Specification (SRS) Reviews}
+  Reviews are due at 9am on the first of September, which is Friday, this week. \\
+  Over discord, reviews were assigned as follows:
+  \begin{itemize}
+  \item Mitchell - System Requirements Specification (SRS)
+  \item Brock - Project Management Plan
+  \item Saxon - Software Design Document (SDD)
+  \item Josh - Code
+  \item Nathan - Testing
+  \item Alex - Risk Management Plan
+  \item Andrew - Configuration Management Plan
+  \end{itemize}
+  Some information was acquired from last week's client meeting, and should be documented in the minutes. Those minutes are currently only on Overleaf, as they have not yet been uploaded to Github.\\
+  General information on the contents of a System Requirements Specification (SRS) review document is available at myUni.\\
+  Does anyone have anything they'd like to mention about the review documents?
+  
+  \section{Work Distribution}
+  There is clearly a problem here, and I'm not sure how to address it.
+
+  \end{flushleft}
+
+  \end{document}

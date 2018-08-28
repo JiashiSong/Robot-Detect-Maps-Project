@@ -1,0 +1,101 @@
+%%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{ Sevnth }
+  \newcommand{\meetinglocation}{ Atrium, Ingkarni Wardli } %% Location
+  \newcommand{\meetingdatetime}{ 1:00 pm 11/09/17 } %% Date and time
+  \newcommand{\meetingchair}{ Mitchell Mickan } %% Chair
+  \newcommand{\meetingminutes}{ Saxon } 
+
+  \begin{document}
+
+  %%%mention the no, time, and venue of the meeting
+  \noindent The {\em \meetingno} Software Engineering Group Project weekly meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+  %%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+
+  \vspace*{10pt}
+
+  %%%if some students cannot make the meeting due to some reasons, their names should appear here.
+  \section{Apologies}
+  N/A %% hopefully
+
+  %%%short presentation about the work of previous week or any milestone specified in the course.
+  \section{Presentation}
+
+  N/A	
+
+  %%%any schedules for this meeting should go next, each with a separate section.
+  %%%for example, the first meeting is about requirement elicitation, like the following.
+  
+  \section{ Manual Movement from GUI }
+  Brief overview of the manual movement of the rover from GUI. Verify that it is fully working and if any further work is needed on it.
+
+  %%%if there are more subissues, make them as subsections.
+  \section{ Sensors }
+  Overview of the current functionality of our rovers sensors. Check that we have all the current materials to properly demonstrate the sensors at tomorrows client meeting. Discussion of whether any more work  needs to be done on them currently. 
+  
+  \subsection{Design Decisions}
+  \begin{itemize}
+ 	 \item{How to handle detection of dots and lines of same colour?}
+ 	 \item{Area of detection of sensors?}
+  \end{itemize}
+
+  %%%more issues should make it like the above one.
+  \section{ Physical Map }
+  Verify that the physical map is completed and ready for demonstration. tomorrow. Make sure that it allows full demonstration of the rover's capabilities. 
+  
+  \section{GUI}
+  What more needs to be completed on the UI? We have handled sending data from the UI to the rover, do we plan to receive data the same way? 
+  
+  \section{ Review Documents }
+  Checking that everyone who has been assigned a review document to complete this week is on track and if anyone wants others in the group to proof read their work. 
+
+
+  \section{Milestone 2 / Future work}
+  Discussing what our plans are for the distribution of work for milestone 2 and how we are going to go about completing it. 
+  \\Currently our milestone 2 goals are listed as:
+  \begin{itemize}
+  	\item {Interpret Sensor Data}
+  	\item {Adjust movement according to sensor data}
+  	\item {Display map on GUI prototype}
+  	\item {Autonomous movement}
+  \end{itemize}
+  
+  \section{ Client Meeting }
+  Aside from the demonstration of milestone 1, what else do we want to show / ask in the client meeting? Does anyone have anything specific they want to go over with the client?
+  
+  \section { Other Issues }
+  Discussing any other issues we have that we may have missed.
+  
+  %%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next group meeting to be held on 2rd October 2017.
+
+  \end{document}

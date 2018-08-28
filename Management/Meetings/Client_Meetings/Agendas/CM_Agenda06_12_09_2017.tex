@@ -1,0 +1,85 @@
+%%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{ sixth }
+  \newcommand{\meetinglocation}{ Room 462 , Ingkarni Wardli } %% Location
+  \newcommand{\meetingdatetime}{ 10:00 a.m. 12/09/2017} %% Date and time
+  \newcommand{\meetingchair}{ Mitchell Mickan } %% Chair
+  \newcommand{\meetingminutes}{ Saxon } 
+
+  \begin{document}
+
+  %%%mention the no, time, and venue of the meeting
+  \noindent The {\em \meetingno} Software Engineering Group Project weekly meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+  %%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+
+  \vspace*{10pt}
+
+  %%%if some students cannot make the meeting due to some reasons, their names should appear here.
+  \section{Apologies}
+  N/A %% hopefully
+
+  %%%short presentation about the work of previous week or any milestone specified in the course.
+  \section{Milestone 1 Presentation}
+  Demonstration of the milestone 1 goals:
+  \begin{itemize}
+	\item{Rover movement functionality}
+	\item{Manual rover control from UI}
+	\item{Working sensors displayed on LCD}
+	\item{Presentation of physical rover map}
+  \end{itemize}
+  Will also show the GUI to show the client how we are currently doing manual control (via keyboard input).
+  % TODO N/A?
+
+  %%%any schedules for this meeting should go next, each with a separate section.
+  %%%for example, the first meeting is about requirement elicitation, like the following.
+  \section{ Milestone 1/2 forms }
+  We still need to get our milestone 1 form back so that it can be properly signed.
+  \\We will also present our milestone 2 form to make sure that the client is happy with the goals that we have set and get this signed off.
+
+  %%%if there are more subissues, make them as subsections.
+  \subsection{ DTD Questions }
+  We currently have several questions about the DTD. These are:
+  \begin{itemize}
+  	\item{Is the position of the rover marking an apollo rover or our rover?}
+  	\item{What is the deal with explored points outside the map boundary?}
+  	\item{The rover starts outside of the map boundary. How are we to handle initially crossing the boundary line?}
+  \end{itemize}
+
+  %%%more issues should make it like the above one.
+  \section{ SDD }
+  In regards to the next client meeting are we presenting the SDD and milestone 2 goals together? (Verifying that this is the next goal)
+
+%%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next meeting to be held on 3rd October 2017.
+
+
+  \end{document}

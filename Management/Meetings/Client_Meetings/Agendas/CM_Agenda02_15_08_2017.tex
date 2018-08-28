@@ -1,0 +1,208 @@
+  %%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{Second}
+  \newcommand{\meetinglocation}{Room 462, Ingkarni Wardli} %% Location
+  \newcommand{\meetingdatetime}{10.10am on Tuesday 15th August 2017} %% Date and time
+  \newcommand{\meetingchair}{ Alex } %% Chair
+  \newcommand{\meetingminutes}{ Andrew } 
+
+  \begin{document}
+
+  %%%mention the no, time, and venue of the meeting
+  \noindent The {\em \meetingno} Software Engineering Group Project Client meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+
+\begin{flushleft}
+
+  %%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+
+  \vspace*{10pt}
+
+  %%%if some students cannot make the meeting due to some reasons, their names should appear here.
+  \section{Apologies}
+  N/A %% hopefully
+
+  %%%short presentation about the work of previous week or any milestone specified in the course.
+  \section{Presentation}
+  
+  \subsection{Roles and Responsibilities}
+  Presentation of what each person's role is, and what responsibilities they have with that role.
+  \linebreak \linebreak
+  \begin{tabular}{lll}
+	\textbf{Title} & \textbf{Holder} & \textbf{Shadow} \\
+	\textbf{Project Manager} & Brock Campbell & Andrew Graham \\
+	\textbf{Design Manager} & Saxon Nelson-Milton & Alex Good \\
+	\textbf{Documentation Manager} & Alex Good & Saxon Nelson-Milton \\
+	\textbf{Test Manager} & Nathan Crowe & Mitchell Mickan \\
+	\textbf{Quality Assurance} & Andrew Graham & Jianshi Song \\
+	\textbf{Requirements Manager} & Mitchell Mickan & Nathan Crowe \\
+    \textbf{Hardware/UI Manager} & Jianshi Song & Brock Campbell \\
+	\end{tabular} 
+    \linebreak
+  
+  \subsection{Software Development Process Model}
+  Our team is going to use a version of the Agile software process model to develop the software for the prototype Lunar Rover Mapping Robot (See appendix A).
+  
+  \subsection{General Project Management Procedures}
+  \begin{enumerate}
+  	\item Contribution Tracking
+    	\linebreak Contributions to any part of the project is managed using a GoogleDocs spreadsheet. 
+        \begin{itemize}
+        \item Each contribution is accompanied with a description of how it helped the project as well as an estimated time spent on the contribution.
+        \end{itemize}
+  	\item Requirements Management
+    	\linebreak Requirements and requirements changes are managed by the requirements manager. 
+        \begin{itemize}
+        \item Any changes in requirements will require a meeting to discuss the change, and formal documentation outlining any changes made as well as any parties affected by the change.
+        \end{itemize}
+    \item Documentation Management
+    	\linebreak All documentation will be written on Overleaf, an online collaborative \LaTeX editor. 
+        \begin{itemize}
+        \item Individual contributions are tracked and completed documents are exported to GitHub.
+        \end{itemize}
+    \item Repository Management
+    	\linebreak A Feature-driven Git workflow will be used to manage our code respository (managed by the Quality Assurance manager).
+        \begin{itemize}
+        	\item The master branch will always contain working code.
+            \item Features will be developed on separate branches and integrated with the master branch only if the features work.
+        \end{itemize}
+    \item Project Standards Management
+    	\linebreak Project standards are designed by specific managers, and enforced by everyone.
+        \begin{itemize}
+        	\item Coding standards are outlined in a defined coding style.
+        \end{itemize}
+	\end{enumerate}
+
+\subsection{Rover Prototype}
+	A prototype Lunar Rover will be showcased. There will be a presentation of the prototype design with respect to the usage of sensors and how they will be utilised to meet the requirements outlined (See appendix B for outline of Rover components design).
+    \linebreak Feedback on the prototype design will be requested to the client.
+  
+  \section{Further Requirements Elicitation}
+Since last week's meeting, some contradictions and further questions surfaced about project specifics that need clarification.
+	\begin{enumerate}
+    	\item There are only 2 wheels on the rover, please indicate what a rover that is "unable to recover" would represent.
+       	\item How does manual control of the Rover work? How do you expect to be able to manually control the rover? Through the UI with forward/back/left/right buttons or by physically moving the prototype?
+        \item Physical example survey area. As far as we know, it is up to us to create the physical survey map our Rover will run on. - Clarifications needed on:
+        \begin{itemize}
+        	\item Is it completely up to us to design and create the survey map, or is there an example map or guidelines we should follow when creating the map?
+        	\item How detailed is the example survey area supposed to be (with respect to the number of significant features).
+            \item With our budget of \$0, what resources do we have access to to create mock survey areas?
+            \item When presenting our final product (in the far future), is the survey map we test our Rover on of our own design or of a completely new design provided by you?
+        \end{itemize}
+    \end{enumerate}
+        
+  %%%more issues should make it like the above one.
+  \section{Other Issues}
+
+\pagebreak
+\section{Appendix}
+
+\subsection{Appendix A: Agile Process Model Reasoning}
+We chose to adapt the Agile software development model. 
+\begin{itemize}
+	\item We will use a scrum board (GitHub projects page) to track project progress and organize our development into sprints.
+    \item Sprints contain a set of related requirements that when implemented produce a new working prototype of the system with additional functionality. 
+    \item In every sprint, two scrum masters will be elected to manage it. This will include the Project Manager and one other team member, whose roles will be to resolve any problems during that sprint. 
+    \item Rapid and iterative delivery of project prototypes will be the main goal of our Development process.
+\end{itemize}
+Agile Reasonings:
+\begin{enumerate}
+	\item Agile models are very responsive to volatile requirements.
+    \item Obtain regular client feedback on progress through prototype presentation.
+    \item High visibility of project progress.
+\end{enumerate}
+
+
+\subsection{Appendix B: Manager Responsibilities}
+	\textbf{Project Manager}
+	\begin{itemize}
+	\item Manages the project schedule, performs risk assessment and coordination. Ensures that everyone is doing their job, and being the go-to person if someone is unable to do their job.
+	\end{itemize}
+	\textbf{Test Manager}
+	\begin{itemize}
+    \item Oversees unit testing of all code including the creation of testing scripts. Ensures a testing standard (JUnit) is followed.
+	\end{itemize}
+	\textbf{Quality Assurance Manager}
+	\begin{itemize}
+    \item Manages code and documentation quality through issue tracking and pull requests on GitHub. Ensures that coding standards are followed.
+	\end{itemize}
+	\textbf{Requirements Manager}
+	\begin{itemize}
+	\item Has the final say on all requirements and manages the addition/ removal and restructuring of new requirements.
+	\end{itemize}
+    \textbf{Documentation Manager}
+    \begin{itemize}
+    \item Manages, organizes and proof reads all documentation. Ensures that documentation standards are followed.
+    \end{itemize}
+    \textbf{Design Manager}
+    \begin{itemize}
+    \item Manages all aspects related to the design of the system. Has the final say for how to manage components in the system and how they will interact with each other.
+    \end{itemize}
+    \textbf{Hardware/UI Manager}
+    \begin{itemize}
+    \item Designs and implements hardware components, redesigning if needed. Manages the format of the UI component of the system.
+    \end{itemize}
+    
+\subsection{Appendix C: Rover Design Description}
+For our initial design, we assume that the Lunar Rover will only ever be moving forward or rotating on the spot. This assumption is made due to the lack of sensors on the Lunar Rover. We may detect objects in front of us to avoid them, but we can't detect whether we are going to reverse into one.
+\begin{enumerate}
+	\item Sensor placement and functions.
+    \begin{itemize}
+    	\item Bump sensors (located at the front of the vehicle).
+        \begin{itemize}
+       		\item Will be used to stop the rover should it run into any physical objects - addressing the requirement of not hitting any obstacles with significant force.
+        \end{itemize}
+        \item Ultransonic Sensor (located at the front of the vehicle).
+        \begin{itemize}
+        	\item Used to detect the presence of physical objects in front of the rover (obstacles or Apollo 17).
+        \end{itemize}
+        \item Gyroscope sensor (located at the centre of the Mindstorms brick, underneath the rover)
+        \begin{itemize}
+        	\item Will be used to track the angular orientation and speed of the Rover.
+            \item Expected to be used to track location of Rover in a survey area via logging of speed and angular orientation.
+        \end{itemize}
+        \item Colour sensor (located at the front of the rover, pointing to the ground).
+        \begin{itemize}
+        	\item Will be used to check for tracks on the ground, boundary lines, craters.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+            
+       
+\end{flushleft}
+  %%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next meeting to be held on 15 August 2017.
+
+
+
+
+  \end{document}
+

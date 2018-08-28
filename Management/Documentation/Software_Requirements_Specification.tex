@@ -1,0 +1,676 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{comment}
+\addtolength{\textheight}{4cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textwidth}{4cm}
+\addtolength{\hoffset}{-2cm}
+
+%% for citation stuff
+\usepackage[style=verbose]{biblatex}
+\usepackage[bottom]{footmisc}
+
+\usepackage{changepage,titlesec}
+\titleformat{\section}[block]{\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}[block]{}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsection} {1em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection} {2em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% subsubsubsection
+\titleclass{\subsubsubsection}{straight}[\subsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{2em}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% user requirement definition
+\newcounter{userrequirement}
+\newcommand{\userrequirement}[8]{\refstepcounter{userrequirement}\subsubsection{UR\ifnum\theuserrequirement<10 0\fi \ifnum\theuserrequirement<100 0\fi\theuserrequirement: #1}\begin{adjustwidth}{2em}{0pt}\textbf{Description:}\hspace*{2.5mm} #2
+\ifx #3\empty \else\newline\newline\textbf{Rationale:}\hspace*{2.5mm} #3 \fi
+\ifx #4\empty \else\newline\newline\textbf{Acceptance criteria:}\hspace*{2.5mm} #4\fi
+\ifx #5\empty \else\newline\newline\textbf{Source:}\hspace*{2.5mm} #5\fi
+\ifx #6\empty \else\newline\newline\textbf{Status:}\hspace*{2.5mm} #6\fi
+\ifx #7\empty \else\newline\newline\textbf{Priority:}\hspace*{2.5mm} #7\fi
+\ifx #8\empty \else\newline\newline\textbf{Dependencies:}\hspace*{2.5mm} #8\fi\newline\end{adjustwidth}}
+
+% functional requirement
+\newcounter{functionalrequirement}
+\newcommand{\functionalrequirement}[8]{\refstepcounter{functionalrequirement}\subsubsubsection{FR\ifnum\thefunctionalrequirement<10 0\fi \ifnum\thefunctionalrequirement<100 0\fi\thefunctionalrequirement: #1}\begin{adjustwidth}{2em}{0pt}\textbf{Description:}\hspace*{2.5mm} #2
+\ifx #3\empty \else\newline\newline\textbf{Rationale:}\hspace*{2.5mm} #3 \fi
+\ifx #4\empty \else\newline\newline\textbf{Acceptance criteria:}\hspace*{2.5mm} #4\fi
+\ifx #5\empty \else\newline\newline\textbf{Source:}\hspace*{2.5mm} #5\fi
+\ifx #6\empty \else\newline\newline\textbf{Status:}\hspace*{2.5mm} #6\fi
+\ifx #7\empty \else\newline\newline\textbf{Priority:}\hspace*{2.5mm} #7\fi
+\ifx #8\empty \else\newline\newline\textbf{Dependencies:}\hspace*{2.5mm} #8\fi\newline\end{adjustwidth}}
+
+% non-functional requirement
+\newcounter{nonfunctionalrequirement}
+\newcommand{\nonfunctionalrequirement}[8]{\refstepcounter{nonfunctionalrequirement}\subsubsection{NFR\ifnum\thenonfunctionalrequirement<10 0\fi \ifnum\thenonfunctionalrequirement<100 0\fi\thenonfunctionalrequirement: #1}\begin{adjustwidth}{2em}{0pt}\textbf{Description:}\hspace*{2.5mm} #2
+\ifx #3\empty \else\newline\newline\textbf{Rationale:}\hspace*{2.5mm} #3 \fi
+\ifx #4\empty \else\newline\newline\textbf{Acceptance criteria:}\hspace*{2.5mm} #4\fi
+\ifx #5\empty \else\newline\newline\textbf{Source:}\hspace*{2.5mm} #5\fi
+\ifx #6\empty \else\newline\newline\textbf{Status:}\hspace*{2.5mm} #6\fi
+\ifx #7\empty \else\newline\newline\textbf{Priority:}\hspace*{2.5mm} #7\fi
+\ifx #8\empty \else\newline\newline\textbf{Dependencies:}\hspace*{2.5mm} #8\fi\newline\end{adjustwidth}}
+
+\newcommand{\stimulusresponse}[2]{\textbf{Stimulus:}\hspace*{2.5mm} #1\newline 
+\textbf{Response:}\hspace*{2.5mm} #2\newline\newline}
+
+\newcommand{\systemfeature}[4]{\subsubsection{#1}\subsubsection*{Description and Priority} \begin{adjustwidth}{2em}{0pt} #2 \end{adjustwidth}
+\ifx #3\empty \else\subsubsection*{Stimulus/Response Sequences} \begin{adjustwidth}{2em}{0pt} #3 \end{adjustwidth} \fi
+\ifx #4\empty \else\subsubsection*{Functional Requirements} \begin{adjustwidth}{2em}{0pt} #4 \end{adjustwidth} \fi}
+
+
+\begin{document}
+%% Title Page
+\begin{titlepage}
+	\centering
+    %% Uni logo
+    \begin{figure}[h!]
+    	\centering
+    	\includegraphics[width=.75\textwidth]{Images/Adelaide_logo.jpg}
+    \end{figure}
+    
+    {\bfseries \huge Software Requirements Specification \par}
+    \vspace{.5cm} 
+    {\bfseries\huge Lunar Mapping Rover \par}
+	\vspace{2cm}
+	{\bfseries\large Pending Approval \par}
+    \vspace{2cm}
+	{{\Large Prepared by SEPUG02\_SRS:} 
+    \vspace{.25cm} 
+    \\ {\large Brock Campbell 
+    \\ Nathan Crowe 
+    \\ Alexander Good
+    \\ Andrew Graham
+    \\ Mitchell Mickan 
+    \\ Saxon A. Nelson-Milton
+    \\ Jiashi Song} \par}
+    \vspace{1cm}
+	{\large School of Computer Science, \\ The University of Adelaide \par}
+    \vspace{1cm}
+	{\large \today \par}
+\end{titlepage}
+
+%%Contents Page
+\tableofcontents
+\newpage
+
+%% Beginning of Sections
+\section{Introduction}
+\subsection{Purpose}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX/Saxon, REVIEWED AND EDITED BY: Saxon
+The following Software Requirements Specification (SRS) outlines the requirements for a prototype Lunar Mapping Rover to be used by Space Explorations in an entry for Google's Lunar XPRIZE Competition. The purpose of the rover will be to map the surrounding area of the Apollo 17 landing site, in order to obtain further information on it's present condition and accompanying artifacts after 4 decades of stagnation.
+
+\begin{comment}
+This documents lays out the requirements for the prototype Lunar Rover Mapping Robot to be used by our client, Space Explorations, and entered into the Google Lunar XPRIZE competition. The purpose of this robot is to map the surrounding area of the Apollo 17 landing site in order to find out more information about the present condition of the landing site and it's artifacts after over 4 decades.
+\end{comment}
+
+\end{adjustwidth}
+\subsection{Document Conventions}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon, Brock
+Requirements will be categorized as either user defined, or functional, and will be listed under two corresponding subsections. Individual user requirements are represented with a unique identifier of the form "UR\#\#\#". Similarly, individual functional requirements, which can be found under their relevant system feature, are represented with an identifier of the form "FR\#\#\#". Any requirements that have been removed from this document will be marked after their status field with " - Removed dd/mm/yyyy (Reason for removal.)". 
+
+Requirements are given a priority of either High, Medium or Low. High priority requirements are those that will demonstrate essential capabilities the real system must posses for completion of the mission. Medium priority requirements are those that would be desirable in improving the functionality and demonstration of the prototype, but are not necessary for completion of the mission. Low priority requirements are long term features which are intended to enhance or simplify the user's experience, or extended rover functionalities not related to the core mission objectives. 
+
+The use of the words 'shall' and 'must' will refer to aspects that must be adhered to, and will not be accepted otherwise. Use of the word 'should' will refer to aspects that would be preferable, but are not required. Finally, use of the word 'may' will refer to aspects that are can be decided by the discretion of the developers.  
+
+The requirements laid out in this document are subject to change and may be be reviewed, reassigned or removed at a later date.
+\end{adjustwidth}
+
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY: Saxon, Brock
+\subsection{Intended Audience and Reading Suggestions}
+
+\subsubsection{Clients}
+\begin{adjustwidth}{2em}{0pt}
+%% Saxon version 
+The Software Requirements Specification is a formal compilation of requirements to clearly define a desired piece of software. The client(s) are encouraged to understand the contents of this document in the interest of the development of the product the client(s) desires. May the client(s) find any problems or misunderstandings within this document, communication with the development team should occur to resolve these issues and increase the quality of the resultant product.
+It is recommended that client(s) take particular interest in section 2, "Overall Description", where the overall product is described in detail. 
+%% Andrew version
+\begin{comment}
+The clients will be the final users of the system, so the SRS will provide an overall view of the capabilities of the system and how hardware and software will interact to provide the final product. An area of particular interest is Part 2, where the overall description of the product is outlined. \newline\newline
+\end{comment}
+\end{adjustwidth}
+\subsubsection{Developers}
+\begin{adjustwidth}{2em}{0pt}
+%% Saxon version 
+Developers should read and understand this document in order to effectively produce a product desired by the client. Understanding of this document will help communication and clarification with the client(s) to further increase understanding. 
+Of particular interest may be sections 3, 4, 5 and 6 which outline details of the product that will direct the development of the desired system. 
+%% Andrew Version
+\begin{comment}
+The SRS provides a detailed view of the technical workings of the rover, with Parts 3, 4, 5 and 6 being of particular note as they outline the detailed user stories, the planned project features, and other requirements that will direct the development of the prototype rover.
+\end{comment}
+\end{adjustwidth}
+\subsection{Project Scope}
+\begin{adjustwidth}{1em}{0pt}
+%% Saxon ****** Need to learn how to quote. 
+The Client, Space Explorations, intends to enter the Google Lunar X-Prize Competition. The Google Lunar X-Prize is an unprecedented \$30 million competition to challenge and inspire engineers, entrepreneurs and innovators from around the world to develop low-cost methods of robotic space exploration. To win the Google Lunar X-Prize, a privately funded team must be the first to: successfully place a spacecraft on the moons surface, travel 500 meters, and transmit high-definition video and images back to earth.\footnote{Google Lunar X-Prize http://lunar.xprize.org/}
+
+Space explorations requires assistance in developing the rover based system. They request a prototype Lunar Rover that will demonstrate the required capabilities of the competition, such as mapping. Of particular interest is the Apollo 17 landing site; the location of which is not accurately known. Research teams are interested to see how the remnants have aged, and would like an accurate map of the area and any significant features. 
+
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon, Brock
+\begin{comment}
+The software and hardware (ie the Lunar Rover and its sensors) specified in this document are for the Lunar Rover Mapping Robot and its prototype. The main purpose of this project is to build and write the software for a functional prototype of a Lunar Rover which is able to correctly and safely navigate and map a model of the Apollo 17 landing site. The software of the project is divided into 2 main components, the mapping and navigation software for the Lunar Rover, and the user interface for controlling the Lunar Rover and viewing its state. The primary motivation for this project is for our client Space Explorations to be able to enter it into the Google Lunar X-Prize competition.
+\end{comment}
+\end{adjustwidth}
+\subsection{References}
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+\begin{adjustwidth}{1em}{0pt}
+The product described in this SRS will be a new system and prototype for a Lunar Rover which will assist the client, Space Explorations, in autonomously navigating and mapping the Apollo 17 Landing Site. The system will involve multiple interfaces of different classification. To start, there will be system interfaces between the software and, sensors, actuators, data storage and communication hardware. The LeJOS API will provide developers with access to these interfaces. The system will need to provide users with information and control, as such, there will be a user interface incorporated into a base station, and will be in communication with the rover via WIFI; a communications interface. Finally, interfaces will exist between the classes in software, each of which will represent some abstraction of a component of the system architecture. 
+
+Three main abstractions of the entire system have been identified. They are as follows, 
+\begin{enumerate}
+\item A prototype of the Lunar Rover which will be constructed using the Lego Mindstorm EV3 Kit and will navigate and map the Apollo 17 landing site.
+\item Automated mapping and navigation software will be written for the prototype.
+\item A user interface which will allow a user to control the Lunar Rover and view its state will be produced as part of the prototype.
+
+\end{enumerate}
+\end{adjustwidth}
+
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon
+%% functions or features ??? 
+\subsection{Product Functions}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon
+The required system will need to demonstrate multiple capabilities under the constraints of the provided Lego Mindstorm kit. The main function of the system will be to create an electronic representation of a paper map containing features to replicate the conditions on the Moon's surface. This will be done through surveying under some predetermined route or manual control, which may be selected using a graphical user interface. The prototype rover must also demonstrate that it can achieve these goals safely.  
+
+\end{adjustwidth}
+\subsection{User Classes and Characteristics}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon
+The prototype system will be operated by any class of user that may reside at Space Explorations. An assumption is made that these users will be of relatively the same class, with a similar technical background and understanding of the system. It is also presumed that anyone assessing the capabilities of the system possess understanding of the requirements outlined in this document.  
+%% I don't think this is the user class ?
+\begin{comment}
+There is one user class necessary to use this software; the user who will be controlling and observing the Lunar Rover. They will have complete control over the safe navigation of the Lunar Rover around the survey area. This excludes situations which may result in damage or loss of the Lunar Rover. The rover shall never collide with an obstacle or fall into a crater and should alert the user were possible if the user attempts to navigate the Lunar Rover into a dangerous situation. The user may allow the Lunar Rover to leave the boundary area upon request. 
+\end{comment}
+\end{adjustwidth}
+\subsection{Operating Environment}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon, Brock
+The operating environment of the Lunar Rover prototype will be a tabletop demonstration map that will emulate the Apollo 17 landing site on the moon. The software for the Lunar Rover will operate on the LeJos firmware installed onto the Lego Mindstorm programmable brick. The software for the user interface will be written in Java and operate within the Java Virtual Machine. The accompanying base station will be located within the same room. 
+\end{adjustwidth}
+\subsection{Design and Implementation Constraints}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon, Mitchell
+The data for the survey map will need to be written in the XML format specified in its document type definition (DTD) which has already been contracted to an external developer and completed. The software for the Lunar Rover will need to be written in Java for the LeJos firmware of the Lego Mindstorm programmable brick. The software for the user interface will also need to be written in Java and operated within the Java Virtual Machine. The physical implementation of the system must be constructed using only the provided Lego Mindstorm EV3 Kit.
+\end{adjustwidth}
+\subsection{User Documentation}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Brock, Saxon
+Closer to the release of the software, a guide will be released which details the process of operation of the prototype Lunar Rover and its accompanying user interfaces. Where necessary, this will also include images to help the user to better understand how to fully utilize the Lunar Rover and its software.
+\end{adjustwidth}
+\subsection{Assumptions and Dependencies}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY:
+It is assumed that we will have complete access to the Lego Mindstorm EV3 kit in order to implement the requirements outlined in this document and that these requirements are achievable as specified in the User Requirements (Section 3). It is also assumed that it will be possible to create an accurate representation of the survey area using the XML map format outlined in the document type definition.
+\end{adjustwidth}
+\section{User Requirements}
+\subsection{Robot Mapping and Navigation Requirements}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Brock, Saxon
+\userrequirement{Surveillance Map}
+{The Lunar Rover must be able to quickly and accurately map its surroundings with respect to significant features and their locations as it moves around the landing site. This surveillance map must be saved so that it can be used for future navigation. This map shall also conform with the XML format outlined in the document type definition (DTD) to be released at a later date. As this is a space race, the mapping and its software should be relatively fast while still maintaining a high level of accuracy.} %Description
+{This map will be used by our client, Space Explorations, to get a better understanding of the current state of the Apollo 17 landing site and its surrounding area, and also to assist in future navigation of the region.} %Rationale
+{The map created by the Lunar Rover will conform with the DTD and be an accurate representation of the physical survey with respect to its relevant features and will be able to create this map quickly in real time.} %Criteria
+{Based on Client Project Specification and confirmed during first client meeting} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{UR003: Significant Features and Detection, UR004: Obstacles and Collisions, UR005:Boundaries, UR006: No-Go Zones, UR012: Obstacles} %Dependencies
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Brock
+\userrequirement{Minimum Distance}
+{In addition to creating a map of the survey area, the Lunar Rover must travel a minimum distance of 500 meters before it finishes surveying the map.} %Description
+{One requirement for the Luxar X-Prize is that the Lunar Rover must travel a minimum of 500 meters during its mission.} %Rationale
+{By tracking the distance that the Lunar has traveled it can be verified that Lunar Rover has traveled a minimum distance of 500 meters within the survey area before before completing its mission and returning back to its landing site. During the prototype phase this 500 meter distance will be scaled to match the prototype model of the Lunar Rover.} %Criteria
+{Based on Client Project Specification and confirmed during first client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Brock, Saxon
+\userrequirement{Significant Features and Detection}
+{The Lunar Rover must be able to detect the presence of the significant features during the mapping of the survey area. Significant features include trails such as footprints, vehicle tracks, and a possible landing trail formed by sliding of the Apollo 17, and various radiation.} %Description
+{The user requires a detailed map of the artifacts left behind from the Apollo 17 mission, which includes the landing site, tracks and trails.} %Rationale
+{The Lunar Rover is able to detect the presence of significant features in the survey area and does not incorrectly identify these feature or detect features where there are none present.} %Criteria
+{Based on Client Project Specification and confirmed during first client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: Brock, REVIEWED AND EDITED BY: Andrew, Mitchell
+\userrequirement{Obstacles and Collisions}
+{It is essential that the Lunar Rover remains undamaged after mapping the survey area. As such, all obstacles should be avoided and any collisions with an object should not be of significant force where significant force is defined as contact with an obstacle accompanied by continual attempted forward movement of the rover.} %Description
+{The Lunar Rover must not be damaged during automatic or manual control.} %Rationale
+{The Lunar Rover is able to stop all movement when a collision occurs.} %Criteria
+{Based on Client Project Specification and confirmed during first client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ALEX, BROCK, REVIEWED AND EDITED BY: Andrew, Saxon
+\userrequirement{Boundaries}
+{Upon landing, the Lunar Rover shall travel within a predetermined boundary of 500 meters, which during the prototype phase will be represented as rectangular box on the surface of the A1 sheet of paper as a line of a uniform colour. The Lunar Rover must stay within the specified area unless directed otherwise.} %Description
+{The Lunar Rover must be able to remain within a predetermined survey area to maximize mission success.} %Rationale
+{The Lunar Rover must halt movement before a majority (2 of the 3 wheels) of the rover crosses any survey boundary during automated control. Boundary lines can be crossed when manual control of the rover is assumed.} %Criteria
+{Based on the Client Project Specification and confirmed during first client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ???, BROCK, REVIEWED AND EDITED BY: Mitchell, Saxon
+\userrequirement{No-Go Zones}
+{User-defined obstacles known as No-Go Zones (NGZ) may be designated at any point of the mapping process to show potentially dangerous areas of the map into which the vehicle must not go. NGZ are used to mark debris or hazardous environmental anomalies that occur between selection of a site and arrival. In the event of a NGZ being designated on the rovers current location the rover must immediately navigate out of this area.} %Description
+{The Lunar Rover must be able to react to and avoid User-defined obstacles represented as NGZ.} %Rationale
+{The Lunar Rover must avoid all NGZ created during mapping, and exit any NGZ created on the Rover's current position.} %Criteria
+{Based on the Client Project Specification and confirmed during first client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{UR016: Ability to Dynamically Allocate No-Go Zones.} %Dependencies
+%% WRITTEN BY: Alex, BROCK REVIEWED AND EDITED BY: Mitchell, Saxon
+\userrequirement{Automated Navigation}
+{At the request of the user, the Lunar Rover must be able to move and map the survey area completely autonomously. This means that the Lunar Rover must be able to detect and respond appropriately to all features of the map without the need for user interaction.} %Description
+{The client expects that it will be possible to initiate the surveying and that the Lunar Rover will complete this autonomously under the observation of the user.} %Rationale
+{The user is able to initiate automated navigation and the Lunar Rover will begin surveying the area without any user interaction required unless manual designation of a NGZ is needed.} %Criteria
+{Based on the Client Project Specification.} %Source
+{Not Yet Implemented.} %Status
+{High.} %Priority
+{UR003: Significant Features and Detection, UR004: Obstacles and Collisions, UR005: Boundaries, UR006: No-Go Zones} %Dependencies
+%% WRITTEN BY: Alex, BROCK, REVIEWED AND EDITED BY:
+\userrequirement{Controlled Navigation}
+{In addition to automated navigation, the Lunar Rover must also offer manual control via a user friendly interface. In the final product, this feature must be achievable via an implemented software user interface which can be controlled from Earth. If this feature cannot be achieved on the prototype via the use of a user interface, it must at least be achievable via the use of the Lego Mindstrom programmable brick.} %Description
+{The client expects that it will be possible to take control of the Lunar Rover manually at any time, whether it be to further analyse a region or in cases of emergency.} %Rationale
+{Manual control should be able to be assumed at any point, and automatic control should continue after relinquishing manual control.} %Criteria
+{Based on the Client Project Specification} %Source
+{Not Yet Implemented.} %Status
+{Medium.} %Priority
+{None.} %Dependencies
+\end{adjustwidth}
+\subsection{Physical Demonstration Map Requirements}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: Brock, REVIEWED AND EDITED BY: Mitchell,Saxon
+\userrequirement{Craters}
+{Craters must be represented as thick black lines on the demonstration map. The rover should avoid crossing over crater lines with more than 1 wheel to prevent the rover from slipping in.} %Description
+{The rover must avoid falling into craters, as falling into a crater would render the rover unrecoverable.} %Rationale
+{The rover must be able to avoid all craters during automatic surveying and manual control.} %Criteria
+{Client Project Specification.} %Source
+{Not Yet Implemented.} %Status
+{High.} %Priority
+{} %Dependencies
+%% WRITTEN BY: Andy REVIEWED AND EDITED BY: Alex
+\userrequirement{Trails and Tracks}
+{There will be 3 types of tracks and trails present on the map. These are rover trails which will be represented by 2 parallel lines, which may have a circular ending where the rover has turned around, footprints which will be marked by a row of dots and landing trails formed by the Apollo 17. These will be represented by parallel lines.} %Description
+{These are important features on the map and must be identified.} %Rationale
+{The Lunar Rover must be able to recognize and distinguish between the different types of tracks.} %Criteria
+{Based on first client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{} %Dependencies
+%% WRITTEN BY: Mitchell , REVIEWED AND EDITED BY: Saxon
+\userrequirement{Apollo 17 Landing Artifacts}
+{% Saxon
+The rover should be capable of identifying, locating and mapping the remnants of the 1972 Apollo 17 landing site.
+% Mitchell's Version: A goal of the project is to pinpoint the location of the 1972 Apollo 17 landing site. This has been difficult to do with satellite, as such, a rover is being used to get a more precise location. This is being done so that the final rover that will be sent to the moon will be able to take high definition video of the artifacts for researchers to examine. 
+} %Description
+{This is one of the main goals of the rovers mission and is of interest to researchers. } %Rationale
+{The lunar rover must be able to successfully locate the Apollo 17 landing artifacts and detail them on the map.} %Criteria
+{Client Project Specification} %Source
+{Not yet Implemented} %Status
+{Low.} %Priority
+{TBD} %Dependencies
+
+%% Written by ??? and Saxon
+\userrequirement{Obstacles}
+{Physical obstacles on the surface of the moon will be present and should to be identified and avoided by the rover. They may be physically delineated by a physical object on the prototype map to demonstrate this function.} %Description
+{Physical objects need to be avoided and also mapped appropriately.} %Rationale
+{The Lunar Rover must be able to avoid all obstacles during automatic surveying and manual control.} %Criteria
+{First client meeting.} %Source
+{Not yet implemented.} %Status
+{Medium.} %Priority
+{UR004 Obstacles and Collisions} %Dependencies
+\end{adjustwidth}
+\subsection{User Interface Requirements}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: BROCK, REVIEWED AND EDITED BY: Saxon
+\userrequirement{Ability to Start/Stop Surveying}
+{The user shall be able to assume control of the Lunar Rover at any point, and relinquish control back to the Rover to continue surveying the area.} %Description
+{The user may like to halt operations for closer analysis, or problems.} %Rationale
+{The automatic surveying may be paused and resumed at any point without loss of surveying progress.} %Criteria
+{Client Project Specification.} %Source
+{Not Yet Implemented.} %Status
+{Medium.} %Priority
+{TBD.} %Dependencies
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY: Mitchell,Saxon
+\userrequirement{Ability to Control Robot Manually}
+{The user should be able to control the robot from the user interface (UI), ie stop surveying and then manually control the robot. If control from the UI is not possible, then physically pressing a button on the prototype should be used as a contingency.} %Description
+{The user needs to be able to manually control the robot should it need to be redirected to work on another project, or should unexpected actions occur.} %Rationale
+{This requirement can be verified by ensuring that a "stop surveying" button and manual controls (forwards, backwards and sideways) are implemented in the UI, and that the robot can be physically controlled.} %Criteria
+{First client meeting.} %Source
+{Not yet implemented.} %Status
+{Low.} %Priority
+{UR013: Ability to Start/Stop Surveying, UR015: Ability to Override Mapping Boundaries.} %Dependencies
+
+%% Reviewed by saxon
+\userrequirement{Ability to Override Mapping Boundaries}
+{After assuming manual control, a user must be able to navigate the rover across the survey area boundaries and exit the survey area. Normal mapping should occur while the rover is under manual control.} %Description
+{Manual control of the rover allows a user to move the robot to any surveyed or un-surveyed area, including areas outside of the survey area. This may be desirable if exploration is intended outside of the specified area.} %Rationale
+{The rover should be able to exit/enter the survey area when under manual control, and be prohibited from doing so when under automatic control.} %Criteria
+{Client Project Specification.} %Source
+{Not Yet Implemented.} %Status
+{Low.} %Priority
+{TBD} %Dependencies
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY: Brock, Saxon
+\userrequirement{Ability to Dynamically Allocate No-Go Zones}
+{The user must be able to manually designate no go zones on the UI map that prevent the robot from entering the area specified.} %Description
+{Should the user identify dangerous areas on the map from previous mappings, or from the image provided by the satellite, it would be beneficial to manually designate this area so the robot can avoid the area.} %Rationale
+{This requirement can be tested by designating a no go zone in the path of the robot and then observing the actions of the rover.} %Criteria
+{First/second client meeting.} %Source
+{Not yet implemented.} %Status
+{Medium.} %Priority
+{TBD.} %Dependencies
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY: Brock, Saxon
+\userrequirement{Ability to see a view of mapped/unmapped regions}
+{The user should be able to view a map that contains the survey area and any features detected by the rover. These include craters, lines, tracks, borders and the location of the Apollo 17 spaceship.} %Description
+{This is one of the core requirements of the program, as the user may want to take control of the rover and will need a map to guide it.} %Rationale
+{The constructed map should closely represent the physical survey area, with a minimal margin of error.} %Criteria
+{Initial project specification / clarified in client meeting 1} %Source
+{Not yet implemented.} %Status
+{Low.} %Priority
+{TBD.} %Dependencies
+%% WRITTEN BY:JOSH ,REVIEWED AND EDITED BY: Saxon
+\userrequirement{Ability to detect No-go zones}
+{The user should be able to detect any dangerous areas, which may be marked as dots.} %Description
+{Prohibiting access to the area is critical to safety requirements. Therefore, the prototype will have to distinguish between the operating area and potentially dangerous routes for safety. } %Rationale
+{Specific postion of No-go zones illustrated on the survey map. } %Criteria
+{Based on Project Specification} %Source
+{Not yet implemented.} %Status
+{Medium.} %Priority
+{TBD.} %Dependencies
+\end{adjustwidth}
+\section{System Features}
+\subsection{Lunar Rover}
+\begin{adjustwidth}{1em}{0pt}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Saxon
+\systemfeature{Movement and Detection}
+{There are a number of features which the prototype Lunar Rover must be able to detect and respond to in order to navigate around the map. These features include tracks, trails, craters, obstacles and remnants of Apollo 17. In order to achieve this, there are a number of sensors and actuators with which the Lunar Rover must be equipped. These sensors include a colour light sensor, ultrasonic sensor, touch sensors and a gyro sensors. The actuators will include the wheels which are both connected to an individual motor and balanced with use of a ball pivot.}
+{
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY: Andrew
+\stimulusresponse{The Lunar Rover detects crater.} % Stimulus
+{The Lunar Rover will stop moving and change direction in order to avoid falling in.} %Response
+\stimulusresponse{The Lunar Rover detects a track or trail.} % Stimulus
+{The Lunar Rover will be able to follow the track along the map.} %Response
+\stimulusresponse{The Lunar Rover detects an object in-front of it with its ultrasonic sensor.} % Stimulus
+{Lunar Rover will slow down or stop to avoid colliding with the object and change course.} %Response
+\stimulusresponse{The Lunar Rover detects an object in-front of it with one or both of its touch sensors.} % Stimulus
+{Lunar Rover will stop to avoid colliding with the object and change course.} %Response
+\stimulusresponse{The Lunar Rover detects a boundary.} % Stimulus
+{Lunar Rover will stop to avoid going outside the boundary and change course.} %Response
+\stimulusresponse{The Lunar Rover detects radiation from the energy source.} % Stimulus
+{Lunar Rover will map the location of the Apollo 17 energy source.} %Response
+}
+{
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY:
+\functionalrequirement{Colour Light Sensor}
+{The colour sensor must be able to distinguish between the properties of tracks, trails, craters, radiation and boundaries. Craters will be represented as a thick black line. Tracks, such as those from a vehicle, will be represented as 2 continuous parallel coloured lines. Trails, such as those from footprints, will be represented as a sequence of coloured dots. Radiation emitted from the energy source will be represented as a coloured region on the map. The boundary line will be represented as a thick continuous coloured line around the perimeter of the map. Feedback from the colour sensor is expected to help distinguish colour and the style of markings (dotted, continuous).} %Description
+{This features are critical in correct navigation and mapping of the landing site.} %Rationale
+{The Lunar Rover is able to detect and correctly identify the type of marking and respond appropriately according to the requirements.} %Criteria
+{UR001: Surveillance Map, UR003: Significant Features and Detection, UR004: Obstacles and Collisions, UR005: Boundaries, UR007: Automated Navigation, UR008: Controlled Navigation} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ???, Alex REVIEWED AND EDITED BY:
+\functionalrequirement{Ultrasonic Sensor}
+{The ultrasonic sensor is able to measure the distance to an object placed in front of it to the distance of approximately 30cm, and will be used to detect physical objects in the path of the rover.} %Description
+{The ultrasonic sensor will play a vital role in the automated mapping of the surface of the moon, as it can detect physical objects, and more importantly, distances. This sensor will be extremely helpful in terms of fulfilling the mapping requirements.} %Rationale
+{The ultrasonic sensor is able to detect obstacles and avoid collision.} %Criteria
+{UR001: Surveillance Map, UR004: Obstacles and Collisions, UR007: Automated Navigation, UR008: Controlled Navigation} %Source
+{Not yet implemented.} %Status
+{Medium.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY:
+\functionalrequirement{Touch Sensors}
+{The two touch sensors will be used to prevent the Lunar Rover from colliding with significant force into obstacles that the Ultrasonic Sensor has failed to detect. These sensors are quite insensitive and shall not be used as the primary method of obstacle avoidance, but as a last resort.} %Description
+{The Lunar Rover must not collide with obstacles at significant force, which is defined as a scenario in which the wheels are turning but the Lunar Rover is not moving.} %Rationale
+{The Lunar Rover immediately stops moving towards an object when it is detected by the touch sensor.} %Criteria
+{UR001: Surveillance Map, UR004: Obstacles and Collisions, UR007: Automated Navigation, UR008: Controlled Navigation} %Source
+{Not yet implemented.} %Status
+{Low.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY:
+\functionalrequirement{Gyro Sensor}
+{The gyro sensor will be used to detect the Lunar Rover's angle of rotation and will aid in the ability to steer and turn the Lunar Rover in the right direction and accurately track its location on the may. Unfortunately the gyro sensor has an accuracy of $\pm $3 degrees, therefore additional measures may be necessary to maintain a higher degree of accuracy.} %Description
+{The Lunar Rover must to able to accurately navigate and map the survey area.} %Rationale
+{The Lunar Rover should be able to correctly estimate its rotation to at least $\pm $3 degrees accuracy and if possible, make up for any inaccuracies in measurements. This can be measured using readings from the gyroscope, its physical location and the output of the produced map.} %Criteria
+{UR001: Surveillance Map, UR007: Automated Navigation, UR008: Controlled Navigation} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+%% WRITTEN BY: ???, REVIEWED AND EDITED BY:
+\functionalrequirement{Wheels and Ball Pivot}
+{The wheels and single ball pivot are our means of propelling and directing the rover. The wheels are independently driven, and as such there are a number of issues to be addressed so that the rover travels in the desired direction and at the required speed. Issues like drift and other inaccuracies need to be identified and handled correctly to ensure the rover's success.} %Description
+{The Lunar Rover must to able to accurately navigate and map the survey area.} %Rationale
+{The rover should be able to move at varying speeds and change direction as accurately as possible.} %Criteria
+{UR001: Surveillance Map, UR002: Minimum Distance, UR007: Automated Navigation, UR008: Controlled Navigation} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{None.} %Dependencies
+}
+%% WRITTEN BY: ALEX, REVIEWED AND EDITED BY:
+\systemfeature{Control}
+{With the use of all its sensors and actuators, there are 2 main states that the Lunar Rover will be in with respects to how it will move around its environment. The first is automated control which relies solely on input from the user with the assistance of feedback in order to move it around the environment, the second is automated control which relies entirely on the Lunar Rover's ability to detect and respond to its environment.}
+{
+\stimulusresponse{The Lunar Rover is set in Automated Control}
+{The Lunar Rover will begin mapping it's surroundings while avoiding any dangerous obstacles.}
+\stimulusresponse{The Lunar Rover is set in Manual Control}
+{The Lunar Rover will respond to incoming commands to move while still following set protocols regarding obstacles, craters and boundaries.}
+} %Stimuli/Responses
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY:
+{
+\functionalrequirement{Manual Control}
+{The user of the program must be able to manually control the rover from the UI. Controls allowed will be back, forwards, left and right, so that the user can accurately direct the rover.} %Description
+{Should the rover need to be re-tasked while on the moon, or malfunction, then the user should be able to manually control the rover in this situation.} %Rationale
+{The user is able to accurately control the Lunar Rover with use of the UI} %Criteria
+{First client meeting.} %Source
+{Not yet implemented.} %Status
+{Medium.} %Priority
+{FR001: Colour Light Sensor, FR002: Ultrasonic Sensor, FR003:Touch Sensors, FR004: Gyro Sensor, FR005: Wheels and Ball Pivot} %Dependencies
+%% WRITTEN BY: ???, REVIEWED AND EDITED BY:
+\functionalrequirement{Automated Control}
+{The premise of this project is that the rover is able to handle its tasks autonomously. This includes navigating through an unknown environment, and mapping its surroundings as it goes. It is expected that these tasks are handled with minimal user input.} %Description
+{Since the rover will be working remotely on the moon's surface, it needs to function correctly with minimal user input.} %Rationale
+{The Lunar Rover is able to autonomously navigate the map while avoiding obstacles and staying within boundaries.} %Criteria
+{First client meeting.} %Source
+{Not yet implemented.} %Status
+{High.} %Priority
+{FR001: Colour Light Sensor, FR002: Ultrasonic Sensor, FR003:Touch Sensors, FR004: Gyro Sensor, FR005: Wheels and Ball Pivot} %Dependencies
+}
+\subsection{User Interface}
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\systemfeature{Controls}
+{ A set of simple to understand controls laid out on the user interface will allow the user to easily interact with the Lunar Rover. This includes the ability to control the Lunar Rover's movement, set No-Go Zones, switch between control states and override set boundaries.} %Description
+{
+\stimulusresponse{The user switches to Manual Control.}
+{The Lunar Rover will switch states for Manual Control.}
+\stimulusresponse{The Lunar Rover is set in Manual Control and the user presses a directional key.}
+{The Lunar will move/turn in the desired direction.}
+\stimulusresponse{The user switches to Automated Control.}
+{The Lunar Rover will switch states for Automated Control.}
+\stimulusresponse{The user specifies a No-Go Zone.}
+{The Lunar Rover will not enter specified area.}
+\stimulusresponse{The user loads a map.}
+{The Lunar Rover will receive and store the map.}
+\stimulusresponse{The user chooses to save the map.}
+{The map will be saved for the user.}
+\stimulusresponse{The user chooses to zoom in on the map.}
+{The map will show a zoomed in state where the user specified.}
+%% ADD MORE.. :) 
+} %Stimuli/Responses
+{
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\functionalrequirement{Loading External Map}
+{The Lunar Rover must be able to load a map externally and continue it's mapping using the information from this map. } %Description
+{If we have an external map that we wish to take advantage of to save time or if we wish to restore a backup the rover must be able to load and understand the information given by this map. } %Rationale
+{The rover successfully loads an external map and successfully continues autonomous mapping using the information from this map.} %Criteria
+{Client Specification.} %Source
+{Not yet implemented.} %Status
+{Low} %Priority
+{UR001: Surveillance Map, UR007: Automated Navigation} %Dependencies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\functionalrequirement{Switch between Autonomous and Manual}
+{The user must be able to switch between autonomous and manual control through the use of a GUI.} %Description
+{The Rover needs to support both manual and autonomous movement and the current mode must be controllable by the user.} %Rationale
+{The user is able successfully swap between manual and autonomous control to set the movement of the rover.} %Criteria
+{First Client Meeting.} %Source
+{Not yet implemented.} %Status
+{Low.} %Priority
+{FR006: Manual Control, FR007: Automated Control} %Dependencies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\functionalrequirement{No-Go Zone Specification}
+{No-Go Zones (NGZ) must be able to be specified through interaction with the interface controlling the rover.} %Description
+{NGZs must be able to be specified in case unexpected or dangerous terrain appears and we want to manually tell the rover to avoid this are.} %Rationale
+{The user is able to interact with a map on the interface to specify areas which are NGZs and the rover successfully avoids these newly designated areas.} %Criteria
+{Client Specification.} %Source
+{Not yet implemented.} %Status
+{Medium.} %Priority
+{UR018: Ability to detect No-go Zones} %Dependencies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\functionalrequirement{Map Zoom in}
+{The user must be able to zoom in on the map to get a closer view, alternatively the user must also be able to zoom out an appropriate distance.} %Description
+{If the user wants a clearer view the UI must be able to support zooming in on the map to show a more detailed close up.} %Rationale
+{The user is able to successfully zoom in and out using the UI on the chosen areas of the map.} %Criteria
+{Client Specification.} %Source
+{Not yet implemented.} %Status
+{Low.} %Priority
+{UR001: Surveillance Map, UR017: Ability to see a view of mapped/unmapped regions} %Dependencies
+
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\functionalrequirement{Save Existing Map}
+{The Land Rover must have the ability to save the current existing map as specified by the DTD.} %Description
+{Failures are always possible and having backups is important to minimize the cost of these failures. By being able to regularly save the current map if a failure occurs not much progress will be lost.} %Rationale
+{The rover is able to save the map and able to reload it successfully.} %Criteria
+{Client Specification.} %Source
+{Not yet implemented.} %Status
+{Low.} %Priority
+{UR001: Surveillance Map, FR008 Loading External Map} %Dependencies
+
+} %Functional Requirements
+%% WRITTEN BY: Andrew, REVIEWED AND EDITED BY:
+\systemfeature{Feedback}
+{Based on the sensor readings from the rover, a map of the surface of the moon will be created. Features on the map include physical obsatacles like mountains and craters, boundary lines, footprints created by the apollo 17 astronauts, wheel tracks from the astronaut's rover and landing tracks from the Apollo 17.} %Description
+{
+\stimulusresponse{The ultrasonic sensor detects an object in front of the rover.}
+{The object is marked on the map at the correct distance.}
+\stimulusresponse{A coloured line is detected by the colour sensor.}
+{The rover will plot the sensed line on the UI map.}
+\stimulusresponse{A bump sensor are activated.}
+{An object will be plotted on the map and the rover will stop moving forward and investigate the object.}
+\stimulusresponse{No go zone is detected.}
+{The rover will avoid the no go zone.}
+} %Stimuli/Responses
+{
+\functionalrequirement{Coloured Line Mapping}
+{Colured lines will be detected on the map during the autonomous mapping process with each colour having a certain meaning. These colours will need to be able to seen on the UI map.} %Description
+{These coloured lines represent significant features and as such they must be shown as details on the visual map.} %Rationale
+{The rover successfully detects coloured lines which then become visible on the UI map.} %Criteria
+{} %Source
+{} %Status
+{} %Priority
+{} %Dependencies
+
+
+} %Functional Requirements
+\end{adjustwidth}
+
+\section{External Interface Requirements}
+\subsection{User Interfaces}
+The Graphical User Interface(GUI) will provide all functionalities to enable an operator to view the Lunar Rover prototype's mapping progress. The GUI is also required to have a section for an operator to take manual control of the Rover, as well as functionalities to save and load survey maps.
+\subsection{Hardware Interfaces}
+\subsubsection{Lunar Rover}
+The device used for the Lunar Rover Prototype is the Lego Mindstorms EV3 programmable brick. This brick has 8 physical ports to be used with 7 modules: 5 sensor modules and two motor modules. The physical location of sensors and motors on the prototype will be designed to satisfy user requirements.
+\subsubsubsection{Colour Light Sensor}
+The colour light sensor is required to detect craters, boundary lines, residual radiation, and Apollo 17 tracks; all of which are represented as markings on the ground. As such, the colour sensor will be positioned vertically downwards to detect any of these markings.
+\subsubsection{Ultrasonic Sensor}
+The ultrasonic sensor is required to detect the proximity of the rover prototype to physical 3-dimensional objects to avoid collision with any objects. As such, the ultrasonic sensor will be positioned at the front of the rover, so that all objects in front of the rover can be detected.
+\subsubsection{Gyro Sensor}
+The Gyro Sensor is required to measure the relative angular rotation of the rover. The Gyro Sensor will be placed in the geographic centre of the rover prototype to achieve the greatest accuracy.
+\subsubsection{Touch Sensors}
+The touch sensor will be used to stop the rover from colliding into objects with significant force by halting movement if the sensors are triggered. To get the greatest coverage, the sensors will be placed at the front left and front right positions of the rover.
+\subsection{Software Interfaces}
+The hardware components of the Rover prototype are to be controlled using LeJOS (Java for Lego Mindstorms). Hardware components can be directly manipulated through the Application Programming Interface of LeJOS. The software for the rover prototype will be flashed onto a microSD card and physically transferred to the rover when performing functional tests.
+
+\subsection{Communications Interfaces}
+There are two main communication protocols that will be used for the deployment and operation of the rover prototype. These protocols relate to the transfer of rover software from our version control system to the EV3 Mindstorms brick, and the transfer of mapping data while surveying an area.
+\subsubsection{Software Transfer}
+To transfer the rover prototype software, it will be copied onto a microSD card where it can be inserted directly into the EV3 Mindstorms brick. The Rover mapping program can then be initated via the EV3 control brick.
+\subsubsection{Mapping Transfer}
+The methods to transfer intermediate map data and rover status to the user interface during rover operation are yet to be determined.
+
+\section{Other Nonfunctional Requirements}
+
+\subsection{Performance Requirements}
+%% WRITTEN BY: Mitchell, REVIEWED AND EDITED BY:
+\nonfunctionalrequirement{Automated Mapping Time Constraint}
+{The automated mapping process must be completed within a time constraint of 20 minutes with the whole process ideally being completed in under 15.}  %Description
+{Since the final rover will be working in a much larger area, we don't want the prototype to take an excessive amount of time to map a smaller area as this means will be waiting large amounts of time to see progress. We also want the rover to be viable for use after the mapping and having operate too slowly limits this ability.} %Rationale
+{The Lunar Rover successfully fully maps the test area in under 20 minutes.} %Acceptance criteria
+{First client meeting} %Source
+{Not yet tested.} %Status
+{Low.} %Priority 
+{} %Dependencies
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\nonfunctionalrequirement{Accurate Localization}
+{In order for the Lunar Rover to accurately map the features of its environment and to keep within boundaries and out of No-Go Zones, the Lunar Rover must always have an accurate sense of its location. This may require implementing software methods to overcome sensor inaccuracies.} %Description
+{The Lunar Rover must be able to accurately map the Apollo 17 landing site and keep out of No-Go Zones and within boundaries.} %Rationale
+{Localization readings from the Lunar Rover match those of its environment.} %Acceptance criteria
+{UR001: Surveillance Map, UR005: Boundaries, UR006: No-Go Zones} %Source
+{Not yet tested.} %Status
+{High.} %Priority 
+{TBD.} %Dependencies
+\subsection{Safety Requirements}
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+Due to the nature of the project, being an unmanned autonomous/remotely controlled vehicle, it has been determined that there are no safety requirements regarding possible harm to the operator. However it is essential to the project that the Lunar Rover itself remain undamaged and locatable at all times.
+\subsection{Security Requirements}
+%% WRITTEN BY: Alex, REVIEWED AND EDITED BY:
+\nonfunctionalrequirement{System Access}
+{Under no circumstance should the Lunar Rover be operable by unauthorised persons or should the system on which the control system is running be compromised, remotely or otherwise. It is expected that the software and the system on which the Lunar Rover control software is operated is kept secure at all times and never left unsupervised. }  %Description
+{The Lunar Rover is an expensive piece of equipment and should never be operated by unauthorised persons} %Rationale
+{} %Acceptance criteria - Intentionally left blank
+{} %Source - Intentionally left blank
+{} %Status - Intentionally left blank
+{High.} %Priority
+{} %Dependencies - Intentionally left blank
+\subsection{Software Quality Attributes}
+
+
+\section{Other Requirements}
+
+\subsection{Appendix A: Glossary}
+\subsection{Appendix B: Analysis Models}
+\subsection{Appendix C: Issues List}
+
+\end{document}

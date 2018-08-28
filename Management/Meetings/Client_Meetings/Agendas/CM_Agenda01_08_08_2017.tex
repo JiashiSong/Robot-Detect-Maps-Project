@@ -1,0 +1,162 @@
+  %%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{First}
+  \newcommand{\meetinglocation}{Room 462, Ingkarni Wardli} %% Location
+  \newcommand{\meetingdatetime}{10.10am on Tuesday 8th August 2017} %% Date and time
+  \newcommand{\meetingchair}{ Brock Campbell } %% Chair
+  \newcommand{\meetingminutes}{ Andrew Graham } 
+
+  \begin{document}
+
+  %%%mention the no, time, and venue of the meeting
+  \noindent The {\em \meetingno} Software Engineering Group Project client meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+
+\begin{flushleft}
+
+  %%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+
+  \vspace*{10pt}
+
+  %%%if some students cannot make the meeting due to some reasons, their names should appear here.
+  \section{Apologies}
+  N/A %% hopefully
+
+  %%%short presentation about the work of previous week or any milestone specified in the course.
+  \section{Presentation}
+  N/A
+
+  %%%any schedules for this meeting should go next, each with a separate section.
+  %%%for example, the first meeting is about requirement elicitation, like the following.
+  \section{Requirement Elicitation}
+
+  %%%if there are more subissues, make them as subsections.
+  \subsection{Elicit Lunar Rover Requirements}
+  Functional requirements involve anything related to what quality and level of technology will be provided to carry out the mission. Clarification is required on the following points:
+
+  \begin{enumerate}
+  
+  \item What sensors are available (infrared, colour) in the Lego Mindstorm EV3 Kit?
+  \linebreak How can we know where the Lunar Rover is in the survey area without having a GPS?
+  \linebreak How should we be "transmitting video" to an operator when there are no cameras? What information needs to be transmitted?
+  
+  \item "...demonstrate a prototype Lunar Rover that will travel 500 meters..." 
+  \linebreak In this context, what is this 500 metre constraint applied to?
+  
+  \end{enumerate}
+  
+  
+  \subsection{Elicit Mapping Requirements}
+  Mapping requirements involve anything related to, or required for, constructing a survey map of the area the Rover lands in. Clarification is required on the following requirements: 
+  
+  \begin{enumerate}
+  
+  \item "...surveying area to search with a bounding box of 500 meters."
+  \linebreak What shape is the bounding box?
+  \linebreak How thick is the bounding box line (relative to regular lines)?
+  \linebreak What colour are boundary lines?
+  
+  \item "Apollo 17 ... should have a weak radiation signature."
+  \linebreak How is the radiation signature used? It it marked on the map?
+  \linebreak Is there only one location where the Apollo 17 could be (parts haven't broken off)?
+  \linebreak Is the mission accomplished after finding Apollo 17, or should surveying the area continue?
+  
+  \item "The map must be constructed in real-time and show significant features found."
+  \linebreak What are significant features in this context?
+  \linebreak How are these features differentiated from each other?
+  \linebreak How is Apollo 17 differentiated from other surveyed objects?
+  \linebreak How are dangerous obstacles differentiated from regular terrain?
+  
+  \item "The operator may designate no-go zones (NGZ)..."
+  \linebreak How are these NGZ marked?
+  \linebreak Does an operator define these on the survey map (rover avoids these areas), or are these locations marked physically in the survey area?
+  
+  \item "Sudden changes in the terrain gradient (i.e. craters) will be represented as a thick line."
+  \linebreak Are all dangerous obstacles represented as thick lines?
+  \linebreak Are thin lines used in the survey area? If so, what will these represent? How thick are thick lines compared to regular lines?
+  
+  \item "Lunar Rover must stay within the specified area unless directed otherwise."
+  \linebreak Are we required to map areas outside of the survey area?
+  
+  \end{enumerate}
+  
+  
+  \subsection{Elicit Mission Requirements}
+  Mission requirements are related to anything that could comprimise the success of the mission, such as time constraits, locations for starting/ending a mission. Clarifications are required on the following points:
+  
+  \begin{enumerate}
+  
+  \item "Mostly concerned with the accuracy of the mapped representation.. vehicle shouldn't take forever!"
+  \linebreak How is the accuracy of the mapped representation measured (map resolution)?
+  \linebreak What is the slowest time acceptable for a Rover to map a survey area?
+  
+  \item "When the vehicle has accomplished the mission or prematurely stopped the survey, the vehicle must return to the Lunar Rover landing..."
+  \linebreak Does the vehicle return autonomously or via manual control?
+  \linebreak How close to the lunar rover landing?
+  
+  \end{enumerate}
+
+
+  \subsection{Elicit Design Requirements}
+
+  \begin{enumerate}
+    \item "The operator has some form of visual surveillance of the vehicles operations."
+    \linebreak What operations must be reported to the operator?
+    
+    \item What are the interface requirements for controlling the "Lunar Rover"?
+    \linebreak What are the desirable features of the User Interface?
+  \end{enumerate}
+
+
+  \subsection{Elicit Uncategorized Requirements}
+  Requirements that couldn't be categorized into the previous categories.
+  
+  \begin{enumerate}
+
+  \item "There are many safety issues which must be addressed in this project."
+  \linebreak What are these safety issues?
+  
+  \item What are the definition of DTD, CTO (Chief Technology Officer)?
+
+  \item "To protect the expensive vehicle from harm as well as preserve the integrity of the site, the vehicle must not collide against an external object with any significant force."
+  \linebreak What counts as significant force?
+
+  \end{enumerate}
+
+  %%%more issues should make it like the above one.
+  \section{Other Issues}
+
+\end{flushleft}
+  %%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next meeting to be held on 15 August 2017.
+
+
+  \end{document}

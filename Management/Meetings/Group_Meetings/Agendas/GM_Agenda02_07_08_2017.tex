@@ -1,0 +1,117 @@
+  %%%%%% Weekly Meeting Agenda 08/08/2017
+  \documentclass[11pt, a4paper]{article}
+  \usepackage{times}
+  \usepackage{ifthen}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{setspace}
+
+  %%% page parameters
+  \oddsidemargin -0.5 cm
+  \evensidemargin -0.5 cm
+  \textwidth 15 cm
+  \topmargin -1.2 cm
+  \textheight 22 cm
+
+  \renewcommand{\baselinestretch}{1.4}\normalsize
+  \setlength{\parskip}{0pt}
+
+  %% Meeting Details
+  \newcommand{\meetingno}{ Second }
+  \newcommand{\meetinglocation}{ Atrium, Ingkarni Wardli } %% Location
+  \newcommand{\meetingdatetime}{ 11:00am 07/08/2017 } %% Date and time
+  \newcommand{\meetingchair}{ Brock } %% Chair
+  \newcommand{\meetingminutes}{ Alex } 
+
+  \begin{document}
+
+  %%%mention the no, time, and venue of the meeting
+  \noindent The {\em \meetingno} Software Engineering Group Project weekly meeting will be held in {\bf \meetinglocation } at {\bf \meetingdatetime }.
+
+  \vspace*{15pt}
+
+  \begin{center}
+  \huge \bf Agenda
+  \end{center}
+
+  \begin{flushleft}
+  
+  %%%first, nominate a chair for the meeting. We suggest that each member at least has one chance as the chair.
+  \section*{Chair: \meetingchair }
+  \section*{Minutes: \meetingminutes }
+  
+
+  \vspace*{10pt}
+
+  %%%if some students cannot make the meeting due to some reasons, their names should appear here.
+  \section{Apologies}
+
+  %%%short presentation about the work of previous week or any milestone specified in the course.
+  \section{Presentation}
+  N/A
+  
+  %%%any schedules for this meeting should go next, each with a separate section.
+  %%%for example, the first meeting is about requirement elicitation, like the following.
+  \section{Management updates}
+  \subsection{Documentation Updates}
+  \begin{itemize}
+  \item Documentation links will now be placed in a centralized location on GitHub. These links need to be kept up to date.
+  \item Furthermore, submitting any new documentation or documentation updates will follow the defined format:
+  \begin{enumerate}
+
+  \item Create a new branch (called documentation, agendadocs or similar).
+  \item Add, commit and push the new/updated docs to the new branch.
+  \item Submit a pull request to merge the docs branch into master.
+  \item Approve and merge your own pull request to put the docs into master.
+  \item Finally, delete the new branch (after you merge it prompts you to do so).
+  
+  \end{enumerate}
+  
+  \end{itemize}
+  \subsection{Timesheets}
+  \begin{itemize}
+  \item A Google Sheets file has been created and shared with everyone to track our contributions. You can find the timesheet link in the README file.
+  \item Each week, please add your contributions (tasks you complete, issues/ features you address), the outcome of those contributions and and estimated time spent on each task.
+  \item Please fill in any contributions you made last week.
+  \item Note you can count partial contributions (e.g. added requirements section 2.4,2.5).
+  \item This format is open for debate. Do not be worried about having less hours than someone (or less tasks than someone), it's just a way to make sure that everyone is doing at least something each week.
+  \end{itemize}
+  
+  \subsection{Scrum board}
+  On the GitHub repo Projects page, there will be a couple of scrum boards to track feature and documentation progress.
+  
+  \subsection{Repository updates}
+  We have a predefined format for how we will operate using GitHub. Andrew will elaborate on this.
+
+  %%%if there are more subissues, make them as subsections.
+  \subsection{Discuss requirements}
+  We need to discuss the requirements of the project, and what questions we are going to ask on the first client meeting on 08/08/2017.
+
+  %%%more issues should make it like the above one.
+  \section{Other Issues}
+  \subsection{Manager weekly tasks}
+  \begin{itemize}
+  \item Documentation Manager
+  \linebreak Task: Organize OverLeaf documents into projects by their type. So far, the 3 main documents (SPMP, SRS, SDD) are all in their own project (good!). It would be good to have Client meeting agendas and minutes in a separate project to Group meeting agendas and minutes. (prority: low - not necessary).
+  \item Testing Manager
+  \linebreak Task: Install and get familiar with the JUnit testing suite. Want to be proficient enough to help others in the group set it up and use it. (priority: low - not coding yet).
+  \item Requirements Manager
+  \linebreak Task: Draw up a requirements dependency tree, grouping similar requirements. Goal is to separate requirements into blocks that will produce a working component of the system, so we can focus on one component at a time. (start: 08/08/2017 after client meeting. priority: high - required ASAP).
+  \item Design Manager
+  \linebreak Task: From the vague description of the requirements, converse with the Requirements Manager and begin thinking about the overall design of the system. Don't need a UML diagram outlining each component of the system, just a general idea of what we will need to implement on a low level. (priority: medium)
+  \item Quality Assurance Manager
+  \linebreak Task: Get familiar with Git workflows and the commands required to follow them to be able to guide others. Perhaps draw up a small document (based on Atlassian tutorials) that outlines basic git commands to use? (priority: low - not coding yet).
+  \item Project Manager
+  \linebreak Task: Start writing the Software Project Management Plan. (priority:low). Work on the client meeting agenda for 8/8/2017. (priority: extreme).
+  \item Everyone
+  \linebreak Task: Install LeJos (Eclipse or IntelliJ plugin). Get familiar with the syntax, read a bit of the docs  and perhaps some code online to figure out what we can and can't do. (prioirty: low - the more you read the better off you will be later).
+  \linebreak Task: Smash out the Software Requirements Specification document. (Due 2 weeks from now - unconfirmed?)
+  \end{itemize}
+%%%finally, specifies time of next meeting
+  \vspace*{10pt}
+  \noindent Note: Next meeting to be held on 13 August 2017.
+  \noindent\linebreak Note: Meeting start-time 11.05am. End time 12.10pm.
+  \end{flushleft}
+
+  \end{document}

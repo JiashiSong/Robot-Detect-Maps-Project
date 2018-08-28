@@ -1,0 +1,55 @@
+  <!-- A Luna Rover map contianing one boundary, vehicle status, apollo landing site, rover landing site and track to color mapping, with any number of obstacles, zones, tracks and additional attributes. The Luna Rover map uses a global unit of mesurement for all measurmenets. The default unit of measurement is metres. -->
+  <!ELEMENT lunarrovermap (attribute*, boundary, vehicle-status, apollo-landing-site, rover-landing-site, track-to-color, obstacle*, zone*, track*)>
+  <!ATTLIST lunarrovermap units (metres|km|cm|mm) "metres">
+
+  <!-- The site boundray described as a rectangular area -->
+  <!ELEMENT boundary (area)>
+
+  <!-- The status of the vehicle with its location and heading -->
+  <!ELEMENT vehicle-status (point, heading, attribute*)>
+
+  <!-- An obstacle identified as the Apollo landing site -->
+  <!ELEMENT apollo-landing-site (obstacle, attribute*)>
+
+  <!-- A location identified as the luna rover landing site -->
+  <!ELEMENT rover-landing-site (point, attribute*)>
+
+  <!-- A mapping of track id to color codes - prototype mapping only -->
+  <!ELEMENT track-to-color (attribute*)>
+
+  <!-- An obstacle described as a set of contact points or an area surounding by the obstacle -->
+  <!ELEMENT obstacle ((point+)|area)>
+
+  <!-- A zone with a circle or shape descriping the enclosed region of the zone and its state -->
+  <!ELEMENT zone (attribute*, (circle|area) )>
+  <!ATTLIST zone 
+    state (nogo|unexplored|explored|radiation|crater) #REQUIRED>
+
+  <!-- A series or points describing the shape and length of a track with sequential point elements -->
+  <!ELEMENT track ((point+|area), attribute*)>
+  <!ATTLIST track 
+    type (landing|vehicle|footprint) #REQUIRED>
+
+  <!-- An area with one or more points describing its shape -->
+  <!ELEMENT area (point+)>
+
+  <!-- A circle contians a point of origin with a radius attribute -->
+  <!ELEMENT circle (point)>
+  <!ATTLIST circle
+    radius CDATA #REQUIRED>
+
+  <!-- A point is specified on a 2D cartisean plane. X progresses horizontally to the right, y progresses vertially and upwards. -->
+  <!ELEMENT point EMPTY>
+  <!ATTLIST point 
+      x CDATA #REQUIRED
+      y CDATA #REQUIRED>
+  
+  <!-- A heading in degrees celsius. -->
+  <!ELEMENT heading EMPTY>
+  <!ATTLIST heading 
+      angle CDATA #REQUIRED>
+  
+  <!-- General Attributes definition -->
+  <!ELEMENT attribute (key,value)>
+  <!ELEMENT key (#PCDATA)>
+  <!ELEMENT value (#PCDATA)>
