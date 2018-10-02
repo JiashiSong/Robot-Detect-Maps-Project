@@ -1,6 +1,7 @@
 # 2017-S2-SEP-UG02
 
 
+Project Role :
 Project Manager: Brock Campbell   
 Documentation Manager: Alexander Good  
 Quality Assurance Manager: Andrew Graham  
